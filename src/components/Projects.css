@@ -1,0 +1,74 @@
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background-color: var(--card-bg);
+  padding: 2rem 1.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color); /* Light border */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+  border-color: var(--primary-color);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.folder-icon {
+  color: var(--primary-color);
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-links a {
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+.project-links a:hover {
+  color: var(--primary-color);
+}
+
+.project-title {
+  color: #fff; /* Updated from var(--title-color) which was missing */
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.project-description {
+  color: var(--secondary-color);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  flex-grow: 1; /* Pushes tech list down */
+}
+
+.project-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+}
+
+.project-tech-list li {
+  margin-right: 0.5rem;
+}
