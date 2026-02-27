@@ -1,0 +1,176 @@
+@use '../../styles/variables' as *;
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+.bgCode {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-family: $font-display;
+    font-size: 6vw;
+    color: rgba(255, 255, 255, 0.02);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+
+    @media (max-width: $breakpoint-tablet) {
+        font-size: 8vw;
+    }
+}
+
+.content {
+    position: relative;
+    z-index: 10;
+}
+
+.greeting {
+    font-family: $font-display;
+    color: $color-accent;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    font-size: 1rem;
+}
+
+.title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+
+    .cursor {
+        color: #39FF14;
+        font-weight: 100;
+        margin-left: 2px;
+        opacity: 1;
+    }
+
+    .blink {
+        animation: blink 1s step-start infinite;
+    }
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #F0EDE6;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.roleContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2rem;
+    margin-bottom: 4rem;
+}
+
+.terminalPrompt {
+    color: #39FF14;
+    font-family: 'Syne Mono', monospace;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+}
+
+.dynamicPhrase {
+    margin: 0;
+    font-family: 'Syne Mono', monospace;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: #39FF14;
+}
+
+.actions {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.primaryBtn,
+.secondaryBtn {
+    font-family: $font-display;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.primaryBtn {
+    color: $color-accent;
+    border: 1px solid rgba($color-accent, 0.3);
+    background: rgba($color-accent, 0.05);
+
+    .bracket {
+        color: rgba($color-text, 0.5);
+        margin: 0 5px;
+    }
+
+    &:hover {
+        border-color: $color-accent;
+        background: rgba($color-accent, 0.1);
+        box-shadow: 0 0 15px rgba($color-accent, 0.2);
+    }
+}
+
+.secondaryBtn {
+    color: $color-text;
+    border-bottom: 1px dashed rgba($color-text, 0.3);
+
+    &:hover {
+        border-bottom-color: $color-accent;
+        color: $color-accent;
+    }
+}
+
+.scrollIndicator {
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: $font-display;
+    font-size: 0.7rem;
+    color: rgba($color-text, 0.4);
+    letter-spacing: 2px;
+
+    .mouse {
+        width: 1px;
+        height: 30px;
+        background: linear-gradient(to bottom, rgba($color-text, 0.5), transparent);
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}

@@ -1,0 +1,161 @@
+@use '../../styles/variables' as *;
+
+.projectsSection {
+    min-height: 80vh;
+    padding: 8rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container {
+    width: 100%;
+}
+
+.title {
+    font-family: $font-display;
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+    color: $color-text;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: right;
+
+    @media (max-width: $breakpoint-tablet) {
+        text-align: left;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+
+    @media (max-width: $breakpoint-tablet) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+.card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+        transform: translateY(-8px);
+        border-color: rgba($color-accent, 0.4);
+
+        .overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.cardContent {
+    padding: 3rem 2.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardNumber {
+    font-family: $font-display;
+    font-size: 4.5rem;
+    color: rgba(255, 255, 255, 0.05);
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    line-height: 1;
+    pointer-events: none;
+    transition: color 0.4s ease;
+
+    .card:hover & {
+        color: rgba($color-accent, 0.1);
+    }
+}
+
+.cardTitle {
+    font-family: $font-display;
+    font-size: 1.6rem;
+    color: $color-text;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.cardDescription {
+    font-size: 1.05rem;
+    color: rgba($color-text, 0.7);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.tag {
+    font-family: $font-display;
+    font-size: 0.8rem;
+    color: $color-bg;
+    background: rgba($color-text, 0.9);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+}
+
+.card:hover .tag {
+    background: $color-accent;
+    color: $color-bg;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color-bg, 0.9);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.actions {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.actionBtn {
+    font-family: $font-display;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid $color-accent;
+    color: $color-accent;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.3s ease, color 0.3s ease;
+    background: transparent;
+
+    &:hover {
+        background: $color-accent;
+        color: $color-bg;
+    }
+}

@@ -1,0 +1,25 @@
+@use '../../styles/variables' as *;
+
+.footer {
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 4rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.text {
+    font-family: $font-display;
+    font-size: 0.9rem;
+    color: rgba($color-text, 0.5);
+    letter-spacing: 1px;
+}
+
+.accent {
+    color: $color-accent;
+    opacity: 0.8;
+}

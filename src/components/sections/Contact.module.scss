@@ -1,0 +1,239 @@
+@use '../../styles/variables' as *;
+
+.contactSection {
+    min-height: 80vh;
+    padding: 8rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+}
+
+.title {
+    font-family: $font-display;
+    font-size: 4rem;
+    color: $color-text;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.emailContainer {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 5rem;
+}
+
+.emailBtn {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-family: $font-display;
+    font-size: 1.5rem;
+    color: $color-accent;
+    padding: 1rem 2rem;
+    border: 1px dashed rgba($color-accent, 0.5);
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        border-style: solid;
+        background: rgba($color-accent, 0.08);
+        box-shadow: 0 0 20px rgba($color-accent, 0.15);
+    }
+}
+
+.copyIcon {
+    font-size: 1.5rem;
+}
+
+.tooltip {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: $color-accent;
+    color: $color-bg;
+    padding: 0.5rem 1rem;
+    font-family: $font-display;
+    font-size: 0.9rem;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 6px 6px 0;
+        border-style: solid;
+        border-color: $color-accent transparent transparent transparent;
+    }
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    text-align: left;
+
+    @media (max-width: $breakpoint-mobile) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: relative;
+}
+
+.inputGroup {
+    position: relative;
+
+    input,
+    textarea {
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.8rem 0;
+        font-family: $font-body;
+        font-size: 1rem;
+        color: $color-text;
+        outline: none;
+        transition: all 0.3s ease;
+        resize: none;
+
+        &:focus {
+            border-bottom-color: $color-accent;
+        }
+
+        &:focus+label,
+        &:not(:placeholder-shown)+label {
+            top: -20px;
+            font-size: 0.8rem;
+            color: $color-accent;
+        }
+
+        &.errorInput {
+            border-bottom-color: #ff3333;
+        }
+    }
+
+    label {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        font-family: $font-display;
+        color: rgba($color-text, 0.5);
+        transition: all 0.3s ease;
+        pointer-events: none;
+    }
+
+    .errorText {
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        font-family: $font-display;
+        font-size: 0.75rem;
+        color: #ff3333;
+    }
+}
+
+.submitBtn {
+    font-family: $font-display;
+    background: transparent;
+    color: $color-accent;
+    border: 1px solid $color-accent;
+    padding: 1rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+
+    &:hover {
+        background: rgba($color-accent, 0.1);
+        box-shadow: 0 0 15px rgba($color-accent, 0.2);
+    }
+}
+
+.successMessage {
+    font-family: $font-display;
+    color: $color-accent;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba($color-accent, 0.1);
+    border-left: 2px solid $color-accent;
+}
+
+.blink {
+    animation: blink 1s step-end infinite;
+}
+
+.socials {
+    border-left: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-left: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (max-width: $breakpoint-mobile) {
+        border-left: none;
+        border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        padding-left: 0;
+        padding-top: 3rem;
+    }
+}
+
+.socialTitle {
+    font-family: $font-display;
+    color: rgba($color-text, 0.5);
+    margin-bottom: 2rem;
+}
+
+.socialLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.socialLink {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: $font-display;
+    color: $color-text;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+
+    .socialIcon {
+        font-size: 1.5rem;
+        color: rgba($color-text, 0.5);
+        transition: color 0.3s ease;
+    }
+
+    &:hover {
+        color: $color-accent;
+        transform: translateX(5px);
+
+        .socialIcon {
+            color: $color-accent;
+        }
+    }
+}
