@@ -79,9 +79,9 @@
     width: 280px;
     height: 330px;
 
-    /* The actual image or ASCII container */
+    /* The actual image or Fallback container */
     .profileImg,
-    .asciiArt {
+    .fallbackAvatar {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -99,20 +99,15 @@
         }
     }
 
-    .asciiArt {
+    .fallbackAvatar {
         display: flex;
         justify-content: center;
         align-items: center;
         font-family: $font-display;
         color: $color-accent;
-        font-size: 14px;
-        line-height: 1.2;
+        font-size: 3rem;
+        letter-spacing: 2px;
         border: 1px solid rgba($color-accent, 0.2);
-
-        pre {
-            margin: 0;
-            text-align: center;
-        }
     }
 
     /* The neon border that stays behind */

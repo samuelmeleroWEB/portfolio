@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './About.module.scss';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
+import profileImg from '../../assets/images/samuel.jpg';
 
 export const About: React.FC = () => {
   const [ref, controls] = useScrollReveal();
@@ -52,22 +53,14 @@ export const About: React.FC = () => {
           <div className={styles.imageWrapper}>
             {!imgError ? (
               <img 
-                src="/src/assets/images/samuel.jpg" 
+                src={profileImg} 
                 alt="Samuel Melero" 
                 className={styles.profileImg} 
                 onError={() => setImgError(true)}
               />
             ) : (
-              <div className={styles.asciiArt}>
-                <pre>
-{`   _____      
-  /     \\     
- | () () |    
-  \\  ^  /     
-   |||||      
-  /|___|\\     
- /       \\    `}
-                </pre>
+              <div className={styles.fallbackAvatar}>
+                <span>SM</span>
               </div>
             )}
             <div className={styles.imageBorder}></div>

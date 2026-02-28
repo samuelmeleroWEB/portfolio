@@ -71,7 +71,7 @@ export const projects: Project[] = [
         description: 'Este mismo portafolio — diseño terminal futurista, animaciones y Web Components.',
         stack: ['React', 'TypeScript', 'SCSS', 'Framer Motion'],
         demoUrl: '#',
-        githubUrl: '#',
+        githubUrl: 'https://github.com/samuelmeleroWEB/portfolio',
         image: portfolioImg
     }
 ];
