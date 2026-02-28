@@ -70,7 +70,7 @@ export const projects: Project[] = [
         title: 'Portfolio Personal',
         description: 'Este mismo portafolio — diseño terminal futurista, animaciones y Web Components.',
         stack: ['React', 'TypeScript', 'SCSS', 'Framer Motion'],
-        demoUrl: '#',
+        demoUrl: 'https://portfoliosamuelmelero.vercel.app/',
         githubUrl: 'https://github.com/samuelmeleroWEB/portfolio',
         image: portfolioImg
     }
