@@ -5,8 +5,11 @@ export const skills: Skill[] = [
     { name: 'Angular', category: 'Frontend', icon: 'angular', note: 'RxJS, Signals, NgRx' },
     { name: 'JavaScript', category: 'Frontend', icon: 'javascript', note: 'ES6+, DOM, Async' },
     { name: 'TypeScript', category: 'Frontend', icon: 'typescript', note: 'Tipado estricto, Interfaces' },
+    { name: 'Next.js', category: 'Frontend', icon: 'nextjs', note: 'App Router, SSR, SSG' },
     { name: 'HTML5', category: 'Frontend', icon: 'html5', note: 'Semántico, Accesibilidad' },
     { name: 'CSS3', category: 'Frontend', icon: 'css3', note: 'Grid, Flexbox, Animation' },
+    { name: 'Tailwind CSS', category: 'Frontend', icon: 'tailwind', note: 'Design system, Utility First' },
+    { name: 'Bootstrap', category: 'Frontend', icon: 'bootstrap', note: 'Responsive, UI Components' },
     { name: 'SCSS', category: 'Frontend', icon: 'scss', note: 'Mixins, Variables, Nesting' },
     { name: 'Web Components', category: 'Frontend', icon: 'webcomponents', note: 'Shadow DOM, Custom Elements' },
 

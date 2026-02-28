@@ -6,11 +6,12 @@ Bienvenido al repositorio de mi portafolio personal. Este proyecto digital sirve
 
 Este proyecto ha sido desarrollado siguiendo las mejores prácticas y utilizando un stack tecnológico moderno:
 
-- **React 18** - Biblioteca principal para la interfaz de usuario.
+- **React 18 & Next.js** - Bibliotecas y frameworks para la interfaz de usuario.
 - **TypeScript** - Tipado estático para un código más robusto y mantenible.
+- **Tailwind CSS & Bootstrap** - Frameworks CSS para desarrollo ágil y responsive.
+- **SCSS Modules** - Estilado modular, encapsulado y escalable.
 - **Vite** - Herramienta de compilación ultrarrápida.
 - **Framer Motion** - Para crear animaciones fluidas y complejas.
-- **SCSS Modules** - Estilado modular, encapsulado y escalable.
 - **GitFlow** - Metodología de control de versiones para organizar el desarrollo.
 
 ## 🎯 Características Principales
