@@ -37,7 +37,7 @@ export const Skills: React.FC = () => {
         animate={controls}
         className={styles.container}
       >
-        <motion.h2 variants={itemVariants} className={styles.title}>02. / Habilidades</motion.h2>
+        <motion.h2 variants={itemVariants} className={styles.title}>02. / Stack</motion.h2>
 
         <div className={styles.categories}>
           {categories.map((category) => (

@@ -6,6 +6,9 @@ export interface Project {
     demoUrl?: string;
     githubUrl?: string;
     number: string;
+    image?: string;
+    badge?: string;
+    badgeType?: 'warning' | 'info';
 }
 
 export interface Skill {
