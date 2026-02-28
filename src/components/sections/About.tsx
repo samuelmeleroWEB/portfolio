@@ -42,7 +42,7 @@ export const About: React.FC = () => {
           </div>
           
           <div className={styles.stats}>
-            <p className={styles.statLine}>&gt; <span className={styles.key}>experiencia</span>: <span className={styles.value}>+3 años</span></p>
+            <p className={styles.statLine}>&gt; <span className={styles.key}>experiencia</span>: <span className={styles.value}>+1 año</span></p>
             <p className={styles.statLine}>&gt; <span className={styles.key}>proyectos</span>: <span className={styles.value}>6+</span></p>
             <p className={styles.statLine}>&gt; <span className={styles.key}>tecnologías</span>: <span className={styles.value}>15+</span></p>
           </div>

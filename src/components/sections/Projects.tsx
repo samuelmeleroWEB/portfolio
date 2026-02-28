@@ -11,7 +11,7 @@ export const Projects: React.FC = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.08 }, // 80ms stagger required
+      transition: { staggerChildren: 0.08 },
     },
   };
 
@@ -29,11 +29,18 @@ export const Projects: React.FC = () => {
         className={styles.container}
       >
         <h2 className={styles.title}>03. / Proyectos</h2>
-
         <div className={styles.grid}>
           {projects.map((project) => (
             <motion.div key={project.id} variants={itemVariants} className={styles.card}>
+              {project.image && (
+                <div className={styles.cardBg} style={{ backgroundImage: `url(${project.image})` }} />
+              )}
               <div className={styles.cardContent}>
+                {project.badge && (
+                  <div className={`${styles.developmentBanner} ${project.badgeType ? styles[project.badgeType] : ''}`.trim()}>
+                    <span>{project.badge}</span>
+                  </div>
+                )}
                 <div className={styles.cardNumber}>{project.number}</div>
                 <h3 className={styles.cardTitle}>{project.title}</h3>
                 <p className={styles.cardDescription}>{project.description}</p>
@@ -43,7 +50,6 @@ export const Projects: React.FC = () => {
                   ))}
                 </div>
               </div>
-              
               <div className={styles.overlay}>
                 <div className={styles.actions}>
                   <a href={project.demoUrl} className={styles.actionBtn} target="_blank" rel="noopener noreferrer" style={project.demoUrl === '#' ? { opacity: 0.4, cursor: 'not-allowed', pointerEvents: 'none' } : {}}>Ver demo</a>
