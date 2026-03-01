@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './About.module.scss';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
-import profileImg from '../../assets/images/samuel.jpg';
+import profileImg from '../../assets/images/projects/imgprofile.jpg';
 
 export const About: React.FC = () => {
   const [ref, controls] = useScrollReveal();
