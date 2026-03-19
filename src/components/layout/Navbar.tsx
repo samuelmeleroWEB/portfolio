@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { name: 'Sobre mí', href: '#sobre-mi' },
   { name: 'Habilidades', href: '#habilidades' },
   { name: 'Proyectos', href: '#proyectos' },
+  { name: 'Certificaciones', href: '#certificaciones' },
   { name: 'Contacto', href: '#contacto' },
 ];
 
@@ -18,7 +19,7 @@ export const Navbar: React.FC = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
       
-      const sections = ['hero', 'sobre-mi', 'habilidades', 'proyectos', 'contacto'];
+      const sections = ['hero', 'sobre-mi', 'habilidades', 'proyectos', 'certificaciones', 'contacto'];
       let current = '';
       for (const section of sections) {
         const element = document.getElementById(section);

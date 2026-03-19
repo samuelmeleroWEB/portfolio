@@ -17,3 +17,12 @@ export interface Skill {
     icon: string; // we can identify the icon name
     note: string;
 }
+
+export interface Certification {
+    id: string;
+    title: string;
+    issuer: string;
+    date: string; // YYYY-MM-DD for sorting
+    image?: string;
+    url?: string;
+}
