@@ -14,7 +14,7 @@ const PHRASES = [
 
 export const Hero: React.FC = () => {
   const [currentPhrase, setCurrentPhrase] = useState(0);
-  const [ref, controls] = useScrollReveal();
+  const [ref] = useScrollReveal();
   const [offsetY, setOffsetY] = useState(0);
   const { displayed, done } = useTypewriter('Samuel Melero', 100);
 
