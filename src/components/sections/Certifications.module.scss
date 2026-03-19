@@ -22,7 +22,7 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
 
     @media (max-width: $breakpoint-mobile) {
@@ -63,7 +63,7 @@
 
 .imageContainer {
     position: relative;
-    height: 140px;
+    height: 180px;
     overflow: hidden;
     background: #111;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
