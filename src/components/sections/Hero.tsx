@@ -87,7 +87,7 @@ export const Hero: React.FC = () => {
           >
             <span className={styles.bracket}>[</span> Ver Proyectos <span className={styles.bracket}>]</span>
           </a>
-          <a href={siteConfig.cvUrl} className={styles.secondaryBtn} download="Samuel_Melero_CV.pdf">
+          <a href={siteConfig.cvUrl} className={styles.secondaryBtn} download="samuelMeleroCV-ESP-v2.1.pdf">
             Descargar CV
           </a>
         </div>
