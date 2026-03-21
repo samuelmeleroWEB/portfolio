@@ -4,15 +4,12 @@ import styles from './Hero.module.scss';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useTypewriter } from '../../hooks/useTypewriter';
 import { siteConfig } from '../../data/config';
-
-const PHRASES = [
-  "Desarrollador Full Stack",
-  "Código limpio y escalable",
-  "React · Angular · Node.js",
-  "Apasionado por el desarrollo web"
-];
+import { useTranslation } from 'react-i18next';
 
 export const Hero: React.FC = () => {
+  const { t } = useTranslation();
+  const PHRASES: string[] = t('hero.phrases', { returnObjects: true }) as string[];
+  
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const [ref] = useScrollReveal();
   const [offsetY, setOffsetY] = useState(0);
@@ -34,7 +31,7 @@ export const Hero: React.FC = () => {
       clearInterval(phraseInterval);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [PHRASES.length]);
 
   return (
     <section id="hero" className={styles.hero} ref={ref}>
@@ -58,7 +55,7 @@ export const Hero: React.FC = () => {
           {displayed}
           <span className={`${styles.cursor} ${done ? styles.blink : ''}`}>|</span>
         </h1>
-        <h2 className={styles.subtitle}>Desarrollador Full Stack</h2>
+        <h2 className={styles.subtitle}>{t('hero.role')}</h2>
 
         <div className={styles.roleContainer}>
           <span className={styles.terminalPrompt}>&gt;</span>
@@ -85,10 +82,10 @@ export const Hero: React.FC = () => {
               document.querySelector('#proyectos')?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            <span className={styles.bracket}>[</span> Ver Proyectos <span className={styles.bracket}>]</span>
+            <span className={styles.bracket}>[</span> {t('hero.cta')} <span className={styles.bracket}>]</span>
           </a>
           <a href={siteConfig.cvUrl} className={styles.secondaryBtn} download="samuelMeleroCV-ESP-v2.1.pdf">
-            Descargar CV
+            {t('hero.cv')}
           </a>
         </div>
       </motion.div>
@@ -99,8 +96,9 @@ export const Hero: React.FC = () => {
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >
         <span className={styles.mouse}></span>
-        <span className={styles.arrow}>SCROLL</span>
+        <span className={styles.arrow}>{t('hero.scroll')}</span>
       </motion.div>
     </section>
   );
 };
+

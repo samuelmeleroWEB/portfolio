@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Contact.module.scss';
+import { useTranslation } from 'react-i18next';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { Icon } from '../ui/Icons';
 import emailjs from '@emailjs/browser';
 import { siteConfig } from '../../data/config';
 
 export const Contact: React.FC = () => {
+  const { t } = useTranslation();
   const [ref, controls] = useScrollReveal(0.2);
   const [copied, setCopied] = useState(false);
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
@@ -33,7 +35,6 @@ export const Contact: React.FC = () => {
     } else {
       const textArea = document.createElement('textarea');
       textArea.value = email;
-      // Make it invisible
       textArea.style.position = 'fixed';
       textArea.style.left = '-9999px';
       document.body.appendChild(textArea);
@@ -43,7 +44,7 @@ export const Contact: React.FC = () => {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       } catch (err) {
-        console.error('Error copiando al portapapeles: ', err);
+        console.error('Error copying to clipboard: ', err);
       }
       document.body.removeChild(textArea);
     }
@@ -51,13 +52,13 @@ export const Contact: React.FC = () => {
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
-    if (!formState.name.trim()) newErrors.name = 'Requerido';
+    if (!formState.name.trim()) newErrors.name = t('contact.required');
     if (!formState.email.trim()) {
-      newErrors.email = 'Requerido';
+      newErrors.email = t('contact.required');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) {
-      newErrors.email = 'Email inválido';
+      newErrors.email = t('contact.invalid_email');
     }
-    if (!formState.message.trim()) newErrors.message = 'Requerido';
+    if (!formState.message.trim()) newErrors.message = t('contact.required');
     return newErrors;
   };
 
@@ -110,7 +111,7 @@ export const Contact: React.FC = () => {
         className={styles.container}
       >
         <motion.h2 variants={itemVariants} className={styles.title}>
-          ¿Hablamos?
+          {t('contact.title')}
         </motion.h2>
 
         <motion.div variants={itemVariants} className={styles.emailContainer}>
@@ -119,7 +120,7 @@ export const Contact: React.FC = () => {
             <span className={styles.copyIcon}>📋</span>
           </button>
           <div className={`${styles.tooltip} ${copied ? styles.show : ''}`}>
-            ¡Copiado!
+            {t('contact.copied')}
           </div>
         </motion.div>
 
@@ -135,7 +136,7 @@ export const Contact: React.FC = () => {
                 onChange={handleChange}
                 className={errors.name ? styles.errorInput : ''}
               />
-              <label htmlFor="name">Nombre_</label>
+              <label htmlFor="name">{t('contact.name')}</label>
               {errors.name && <span className={styles.errorText}>*{errors.name}</span>}
             </div>
             
@@ -149,7 +150,7 @@ export const Contact: React.FC = () => {
                 onChange={handleChange}
                 className={errors.email ? styles.errorInput : ''}
               />
-              <label htmlFor="email">Email_</label>
+              <label htmlFor="email">{t('contact.email')}</label>
               {errors.email && <span className={styles.errorText}>*{errors.email}</span>}
             </div>
             
@@ -163,12 +164,12 @@ export const Contact: React.FC = () => {
                 onChange={handleChange}
                 className={errors.message ? styles.errorInput : ''}
               ></textarea>
-              <label htmlFor="message">Mensaje_</label>
+              <label htmlFor="message">{t('contact.message')}</label>
               {errors.message && <span className={styles.errorText}>*{errors.message}</span>}
             </div>
             
             <button type="submit" className={styles.submitBtn} disabled={submitStatus === 'loading'}>
-              {submitStatus === 'loading' ? '> Enviando mensaje...' : 'Enviar_Mensaje'}<span className={styles.blink}>_</span>
+              {submitStatus === 'loading' ? t('contact.sending') : t('contact.send')}<span className={styles.blink}>_</span>
             </button>
 
             <AnimatePresence>
@@ -179,7 +180,7 @@ export const Contact: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                 >
-                  &gt; Mensaje enviado correctamente ✓
+                  &gt; {t('contact.success')}
                 </motion.div>
               )}
               {submitStatus === 'error' && (
@@ -190,14 +191,14 @@ export const Contact: React.FC = () => {
                   exit={{ opacity: 0 }}
                   style={{ color: '#ff4c4c', marginTop: '1rem', fontFamily: 'monospace' }}
                 >
-                  &gt; Error al enviar. Inténtalo de nuevo.
+                  &gt; {t('contact.error')}
                 </motion.div>
               )}
             </AnimatePresence>
           </motion.form>
 
           <motion.div variants={itemVariants} className={styles.socials}>
-            <p className={styles.socialTitle}>&gt; links_</p>
+            <p className={styles.socialTitle}>{t('contact.links')}</p>
             <div className={styles.socialLinks}>
               <a href={siteConfig.github} target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
                 <Icon name="github" className={styles.socialIcon} />
@@ -214,3 +215,4 @@ export const Contact: React.FC = () => {
     </section>
   );
 };
+

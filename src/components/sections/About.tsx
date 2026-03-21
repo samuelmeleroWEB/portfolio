@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import styles from './About.module.scss';
+import { useTranslation, Trans } from 'react-i18next';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import profileImg from '../../assets/images/projects/imgprofile.jpg';
 
 export const About: React.FC = () => {
+  const { t } = useTranslation();
   const [ref, controls] = useScrollReveal();
   const [imgError, setImgError] = useState(false);
 
@@ -30,22 +32,24 @@ export const About: React.FC = () => {
         className={styles.container}
       >
         <motion.div variants={childVariants} className={styles.textContent}>
-          <h2 className={styles.title}>01. / Sobre Mí</h2>
+          <h2 className={styles.title}>{t('about.title')}</h2>
           <div className={styles.description}>
             <p>
-              Soy Samuel Melero, un <span className={styles.highlight}>Desarrollador Full Stack</span> apasionado
-              por construir experiencias digitales sólidas desde los cimientos hasta la interfaz. 
+              <Trans 
+                i18nKey="about.p1"
+                components={{ highlight: <span className={styles.highlight} /> }}
+              >
+                Soy Samuel Melero, un <span className={styles.highlight}>Desarrollador Full Stack</span> apasionado
+                por construir experiencias digitales sólidas desde los cimientos hasta la interfaz.
+              </Trans>
             </p>
-            <p>
-              Me encanta el equilibrio perfecto entre el diseño creativo y el código estructurado. Mi enfoque se centra en crear
-              soluciones escalables, manteniendo siempre el diseño limpio y el rendimiento óptimo, ya sea optimizando bases de datos o puliendo micro-interacciones.
-            </p>
+            <p>{t('about.p2')}</p>
           </div>
           
           <div className={styles.stats}>
-            <p className={styles.statLine}>&gt; <span className={styles.key}>experiencia</span>: <span className={styles.value}>+1 año</span></p>
-            <p className={styles.statLine}>&gt; <span className={styles.key}>proyectos</span>: <span className={styles.value}>6+</span></p>
-            <p className={styles.statLine}>&gt; <span className={styles.key}>tecnologías</span>: <span className={styles.value}>15+</span></p>
+            <p className={styles.statLine}>&gt; <span className={styles.key}>{t('about.stats.experience')}</span>: <span className={styles.value}>{t('about.stats.years')}</span></p>
+            <p className={styles.statLine}>&gt; <span className={styles.key}>{t('about.stats.projects')}</span>: <span className={styles.value}>6+</span></p>
+            <p className={styles.statLine}>&gt; <span className={styles.key}>{t('about.stats.technologies')}</span>: <span className={styles.value}>15+</span></p>
           </div>
         </motion.div>
 
@@ -70,3 +74,4 @@ export const About: React.FC = () => {
     </section>
   );
 };
+

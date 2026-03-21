@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 import styles from './Certifications.module.scss';
+import { useTranslation } from 'react-i18next';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { certifications } from '../../data/certifications';
 import { Certification } from '../../types';
 
 export const Certifications: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const [ref, controls] = useScrollReveal(0.1);
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
 
@@ -33,6 +35,19 @@ export const Certifications: React.FC = () => {
     new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
+  const getCertId = (id: string) => {
+    return id.replace('cert-', 'c');
+  };
+
+  const formatDate = (dateStr: string, format: 'short' | 'long' = 'short') => {
+    const date = new Date(dateStr);
+    const locale = i18n.language.startsWith('es') ? 'es-ES' : 'en-US';
+    return date.toLocaleDateString(locale, { 
+      month: format === 'short' ? 'short' : 'long', 
+      year: 'numeric' 
+    });
+  };
+
   return (
     <section id="certificaciones" className={styles.certsSection} ref={ref}>
       <motion.div
@@ -41,7 +56,7 @@ export const Certifications: React.FC = () => {
         animate={controls}
         className={styles.container}
       >
-        <h2 className={styles.title}>04. / Certificaciones</h2>
+        <h2 className={styles.title}>{t('certifications.title')}</h2>
         
         <div className={styles.grid}>
           {sortedCertifications.map((cert) => (
@@ -52,15 +67,17 @@ export const Certifications: React.FC = () => {
                 )}
                 <div className={styles.overlay}>
                    <button className={styles.viewBtn}>
-                    Ver Certificado
+                    {t('certifications.view')}
                   </button>
                 </div>
               </div>
               <div className={styles.info}>
-                <h3 className={styles.certTitle}>{cert.title}</h3>
+                <h3 className={styles.certTitle}>
+                  {t(`certifications.list.${getCertId(cert.id)}`, { defaultValue: cert.title })}
+                </h3>
                 <div className={styles.meta}>
                   <span className={styles.issuer}>{cert.issuer}</span>
-                  <span className={styles.date}>{new Date(cert.date).toLocaleDateString('es-ES', { month: 'short', year: 'numeric' })}</span>
+                  <span className={styles.date}>{formatDate(cert.date)}</span>
                 </div>
               </div>
             </motion.div>
@@ -88,8 +105,8 @@ export const Certifications: React.FC = () => {
               <button className={styles.closeBtn} onClick={() => setSelectedCert(null)}>×</button>
               <img src={selectedCert.image} alt={selectedCert.title} />
               <div className={styles.modalInfo}>
-                <h3>{selectedCert.title}</h3>
-                <p>{selectedCert.issuer} • {new Date(selectedCert.date).toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}</p>
+                <h3>{t(`certifications.list.${getCertId(selectedCert.id)}`, { defaultValue: selectedCert.title })}</h3>
+                <p>{selectedCert.issuer} • {formatDate(selectedCert.date, 'long')}</p>
               </div>
             </motion.div>
           </motion.div>
@@ -98,3 +115,4 @@ export const Certifications: React.FC = () => {
     </section>
   );
 };
+

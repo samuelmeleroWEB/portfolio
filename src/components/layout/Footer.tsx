@@ -1,9 +1,12 @@
 import React from 'react';
 import styles from './Footer.module.scss';
+import { useTranslation } from 'react-i18next';
 import { Icon } from '../ui/Icons';
 import { siteConfig } from '../../data/config';
 
 export const Footer: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -16,9 +19,10 @@ export const Footer: React.FC = () => {
           </a>
         </div>
         <p className={styles.text}>
-          &copy; {new Date().getFullYear()} Samuel. <span className={styles.accent}>System ready.</span>
+          &copy; {new Date().getFullYear()} Samuel. <span className={styles.accent}>{t('footer.ready')}</span>
         </p>
       </div>
     </footer>
   );
 };
+
