@@ -1,0 +1,116 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "certifications": "Certificaciones",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "hello": "Hola, soy",
+    "role": "Desarrollador Full Stack",
+    "phrases": [
+      "Desarrollador Full Stack",
+      "Código limpio y escalable",
+      "React · Angular · Node.js",
+      "Apasionado por el desarrollo web"
+    ],
+    "cta": "Ver Proyectos",
+    "cv": "Descargar CV",
+    "scroll": "SCROLL"
+  },
+  "about": {
+    "title": "01. / Sobre Mí",
+    "p1": "Soy Samuel Melero, un <highlight>Desarrollador Full Stack</highlight> apasionado por construir experiencias digitales sólidas desde los cimientos hasta la interfaz.",
+    "p2": "Me encanta el equilibrio perfecto entre el diseño creativo y el código estructurado. Mi enfoque se centra en crear soluciones escalables, manteniendo siempre el diseño limpio y el rendimiento óptimo, ya sea optimizando bases de datos o puliendo micro-interacciones.",
+    "stats": {
+      "experience": "experiencia",
+      "projects": "proyectos",
+      "technologies": "tecnologías",
+      "years": "+1 año"
+    }
+  },
+  "skills": {
+    "title": "02. / Stack",
+    "categories": {
+      "Frontend": "Frontend",
+      "Backend": "Backend",
+      "Herramientas": "Herramientas"
+    },
+    "notes": {
+      "tipado": "Tipado estricto, Interfaces",
+      "semantico": "Semántico, Accesibilidad",
+      "cv": "Control de versiones",
+      "agile": "Gestión ágil, Scrum"
+    }
+  },
+  "projects": {
+    "title": "03. / Proyectos",
+    "demo": "Ver demo",
+    "github": "GitHub",
+    "badges": {
+      "dev": "En Desarrollo",
+      "improving": "Mejorando"
+    },
+    "list": {
+      "p1": {
+        "title": "Weather App",
+        "desc": "Aplicación del tiempo con geolocalización y previsión de 7 días."
+      },
+      "p2": {
+        "title": "Restaurant Manager",
+        "desc": "Sistema de gestión de mesas, pedidos y carta para restaurantes."
+      },
+      "p3": {
+        "title": "Gestión de Cine",
+        "desc": "Plataforma de administración de salas, películas y reservas de entradas."
+      },
+      "p4": {
+        "title": "Reminder Calendar",
+        "desc": "Herramienta de planificación diaria con tareas, bloques horarios y prioridades."
+      },
+      "p5": {
+        "title": "Organizador de Día",
+        "desc": "App de organización personal con categorías, recordatorios y vista semanal."
+      },
+      "p6": {
+        "title": "Portfolio Personal",
+        "desc": "Este mismo portafolio — diseño terminal futurista, animaciones y Web Components."
+      }
+    }
+  },
+  "certifications": {
+    "title": "04. / Certificaciones",
+    "view": "Ver Certificado",
+    "list": {
+      "c1": "Introducción a la programación I",
+      "c2": "Introducción a la programación II",
+      "c3": "Desarrollador de app móviles",
+      "c4": "Desarrollador full stack",
+      "c5": "INF-302: Javascript",
+      "c6": "Cloud Computing",
+      "c7": "Ciberseguridad en el teletrabajo"
+    }
+  },
+  "contact": {
+    "title": "¿Hablamos?",
+    "copied": "¡Copiado!",
+    "name": "Nombre_",
+    "email": "Email_",
+    "message": "Mensaje_",
+    "send": "Enviar_Mensaje",
+    "sending": "> Enviando mensaje...",
+    "success": "> Mensaje enviado correctamente ✓",
+    "error": "> Error al enviar. Inténtalo de nuevo.",
+    "required": "Requerido",
+    "invalid_email": "Email inválido",
+    "links": "> links_"
+  },
+  "footer": {
+    "ready": "System ready."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Algo salió mal"
+  }
+}

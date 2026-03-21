@@ -1,0 +1,116 @@
+{
+  "nav": {
+    "about": "About me",
+    "skills": "Skills",
+    "projects": "Projects",
+    "certifications": "Certifications",
+    "contact": "Contact"
+  },
+  "hero": {
+    "hello": "Hello, I'm",
+    "role": "Full Stack Developer",
+    "phrases": [
+      "Full Stack Developer",
+      "Clean and scalable code",
+      "React · Angular · Node.js",
+      "Passionate about web development"
+    ],
+    "cta": "See Projects",
+    "cv": "Download CV",
+    "scroll": "SCROLL"
+  },
+  "about": {
+    "title": "01. / About Me",
+    "p1": "I am Samuel Melero, a <highlight>Full Stack Developer</highlight> passionate about building robust digital experiences from the foundations to the interface.",
+    "p2": "I love the perfect balance between creative design and structured code. My focus is on creating scalable solutions, always maintaining clean design and optimal performance, whether optimizing databases or polishing micro-interactions.",
+    "stats": {
+      "experience": "experience",
+      "projects": "projects",
+      "technologies": "technologies",
+      "years": "+1 year"
+    }
+  },
+  "skills": {
+    "title": "02. / Stack",
+    "categories": {
+      "Frontend": "Frontend",
+      "Backend": "Backend",
+      "Herramientas": "Tools"
+    },
+    "notes": {
+      "tipado": "Strict typing, Interfaces",
+      "semantico": "Semantic, Accessibility",
+      "cv": "Version control",
+      "agile": "Agile management, Scrum"
+    }
+  },
+  "projects": {
+    "title": "03. / Projects",
+    "demo": "View Demo",
+    "github": "GitHub",
+    "badges": {
+      "dev": "In Development",
+      "improving": "Improving"
+    },
+    "list": {
+      "p1": {
+        "title": "Weather App",
+        "desc": "Weather application with geolocation and 7-day forecast."
+      },
+      "p2": {
+        "title": "Restaurant Manager",
+        "desc": "Management system for tables, orders, and menus for restaurants."
+      },
+      "p3": {
+        "title": "Cinema Management",
+        "desc": "Cinema management platform for halls, movies, and ticket reservations."
+      },
+      "p4": {
+        "title": "Reminder Calendar",
+        "desc": "Daily planning tool with tasks, time blocks, and priorities."
+      },
+      "p5": {
+        "title": "Day Organizer",
+        "desc": "Personal organization app with categories, reminders, and weekly view."
+      },
+      "p6": {
+        "title": "Personal Portfolio",
+        "desc": "This very portfolio — futuristic terminal design, animations, and Web Components."
+      }
+    }
+  },
+  "certifications": {
+    "title": "04. / Certifications",
+    "view": "View Certificate",
+    "list": {
+      "c1": "Introduction to Programming I",
+      "c2": "Introduction to Programming II",
+      "c3": "Mobile App Developer",
+      "c4": "Full Stack Developer",
+      "c5": "INF-302: Javascript",
+      "c6": "Cloud Computing",
+      "c7": "Cybersecurity in Teleworking"
+    }
+  },
+  "contact": {
+    "title": "Let's Talk?",
+    "copied": "Copied!",
+    "name": "Name_",
+    "email": "Email_",
+    "message": "Message_",
+    "send": "Send_Message",
+    "sending": "> Sending message...",
+    "success": "> Message sent successfully ✓",
+    "error": "> Error sending. Try again.",
+    "required": "Required",
+    "invalid_email": "Invalid Email",
+    "links": "> links_"
+  },
+  "footer": {
+    "ready": "System ready."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong"
+  }
+}
