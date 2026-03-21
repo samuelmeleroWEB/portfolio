@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Navbar.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const NAV_LINKS = [
-  { name: 'Sobre mí', href: '#sobre-mi' },
-  { name: 'Habilidades', href: '#habilidades' },
-  { name: 'Proyectos', href: '#proyectos' },
-  { name: 'Certificaciones', href: '#certificaciones' },
-  { name: 'Contacto', href: '#contacto' },
+  { key: 'about', href: '#sobre-mi' },
+  { key: 'skills', href: '#habilidades' },
+  { key: 'projects', href: '#proyectos' },
+  { key: 'certifications', href: '#certificaciones' },
+  { key: 'contact', href: '#contacto' },
 ];
 
 export const Navbar: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+
+  const currentLanguage = i18n.language.split('-')[0];
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,19 +68,36 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* Desktop Menu */}
-        <ul className={styles.desktopMenu}>
-          {NAV_LINKS.map(link => (
-            <li key={link.name}>
-              <a 
-                href={link.href} 
-                onClick={(e) => handleNavClick(e, link.href)}
-                className={activeSection === link.href.substring(1) ? styles.active : ''}
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <ul className={styles.desktopMenu}>
+            {NAV_LINKS.map(link => (
+              <li key={link.key}>
+                <a 
+                  href={link.href} 
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={activeSection === link.href.substring(1) ? styles.active : ''}
+                >
+                  {t(`nav.${link.key}`)}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className={styles.langSwitcher}>
+            <button 
+              className={currentLanguage === 'es' ? styles.active : ''} 
+              onClick={() => changeLanguage('es')}
+            >
+              ES
+            </button>
+            <button 
+              className={currentLanguage === 'en' ? styles.active : ''} 
+              onClick={() => changeLanguage('en')}
+            >
+              EN
+            </button>
+          </div>
+        </div>
 
         {/* Mobile Hamburger Icon */}
         <button 
@@ -98,7 +123,7 @@ export const Navbar: React.FC = () => {
               <ul>
                 {NAV_LINKS.map((link, i) => (
                   <motion.li 
-                    key={link.name}
+                    key={link.key}
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 + 0.2 }}
@@ -108,7 +133,7 @@ export const Navbar: React.FC = () => {
                       onClick={(e) => handleNavClick(e, link.href)}
                       className={activeSection === link.href.substring(1) ? styles.active : ''}
                     >
-                      {link.name}
+                      {t(`nav.${link.key}`)}
                     </a>
                   </motion.li>
                 ))}
@@ -120,3 +145,4 @@ export const Navbar: React.FC = () => {
     </header>
   );
 };
+
