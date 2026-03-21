@@ -4,6 +4,8 @@ import google2 from '../assets/images/googleactivate2.jpg';
 import neoland from '../assets/images/Neolandcertificate.jpg';
 import jsCert from '../assets/images/imgJs.jpg';
 import devAppMobile from '../assets/images/devappmobile.jpg';
+import cloudComputing from '../assets/images/cloudcomputing.jpg';
+import ciberSeguridad from '../assets/images/Ciberseguridad.jpg';
 
 export const certifications: Certification[] = [
     {
@@ -28,6 +30,22 @@ export const certifications: Certification[] = [
         issuer: 'Google Activate',
         date: '2022-05-20',
         image: devAppMobile,
+        url: '#'
+    },
+    {
+        id: 'cert-6',
+        title: 'Cloud Computing',
+        issuer: 'Google Activate',
+        date: '2022-05-20',
+        image: cloudComputing,
+        url: '#'
+    },
+    {
+        id: 'cert-7',
+        title: 'Ciberseguridad en el teletrabajo',
+        issuer: 'Google Activate',
+        date: '2022-05-20',
+        image: ciberSeguridad,
         url: '#'
     },
     {
