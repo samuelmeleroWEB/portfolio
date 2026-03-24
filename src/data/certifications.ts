@@ -6,6 +6,7 @@ import jsCert from '../assets/images/imgJs.jpg';
 import devAppMobile from '../assets/images/devappmobile.jpg';
 import cloudComputing from '../assets/images/cloudcomputing.jpg';
 import ciberSeguridad from '../assets/images/Ciberseguridad.jpg';
+import profComm from '../assets/images/csscertificate.jpg';
 
 export const certifications: Certification[] = [
     {
@@ -62,6 +63,14 @@ export const certifications: Certification[] = [
         issuer: 'Information Technology Specialist',
         date: '2026-03-18',
         image: jsCert,
+        url: '#'
+    },
+    {
+        id: 'cert-8',
+        title: 'Professional Communication',
+        issuer: 'Pearson / Certiport',
+        date: '2026-03-24',
+        image: profComm,
         url: '#'
     }
 ];
