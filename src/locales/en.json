@@ -41,7 +41,9 @@
       "tipado": "Strict typing, Interfaces",
       "semantico": "Semantic, Accessibility",
       "cv": "Version control",
-      "agile": "Agile management, Scrum"
+      "agile": "Agile management, Scrum",
+      "mysql": "Relational, SQL Queries",
+      "npm": "Package management"
     }
   },
   "projects": {

@@ -41,7 +41,9 @@
       "tipado": "Tipado estricto, Interfaces",
       "semantico": "Semántico, Accesibilidad",
       "cv": "Control de versiones",
-      "agile": "Gestión ágil, Scrum"
+      "agile": "Gestión ágil, Scrum",
+      "mysql": "Relacional, Consultas SQL",
+      "npm": "Gestión de paquetes"
     }
   },
   "projects": {
