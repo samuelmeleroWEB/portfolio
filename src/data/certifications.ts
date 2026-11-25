@@ -1,12 +1,12 @@
 import { Certification } from '../types';
-import google1 from '../assets/images/googleactivate1.jpg';
-import google2 from '../assets/images/googleactivate2.jpg';
-import neoland from '../assets/images/Neolandcertificate.jpg';
-import jsCert from '../assets/images/imgJs.jpg';
-import devAppMobile from '../assets/images/devappmobile.jpg';
-import cloudComputing from '../assets/images/cloudcomputing.jpg';
-import ciberSeguridad from '../assets/images/Ciberseguridad.jpg';
-import profComm from '../assets/images/csscertificate.jpg';
+import google1 from '../assets/images/googleactivate1.webp';
+import google2 from '../assets/images/googleactivate2.webp';
+import neoland from '../assets/images/Neolandcertificate.webp';
+import jsCert from '../assets/images/imgJs.webp';
+import devAppMobile from '../assets/images/devappmobile.webp';
+import cloudComputing from '../assets/images/cloudcomputing.webp';
+import ciberSeguridad from '../assets/images/Ciberseguridad.webp';
+import profComm from '../assets/images/csscertificate.webp';
 
 export const certifications: Certification[] = [
     {

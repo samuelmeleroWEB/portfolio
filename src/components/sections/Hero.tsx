@@ -84,7 +84,7 @@ export const Hero: React.FC = () => {
           >
             <span className={styles.bracket}>[</span> {t('hero.cta')} <span className={styles.bracket}>]</span>
           </a>
-          <a href={siteConfig.cvUrl} className={styles.secondaryBtn} download="CvSamuelMeleroDev.pdf">
+          <a href={siteConfig.cvUrl} className={styles.secondaryBtn} download>
             {t('hero.cv')}
           </a>
         </div>

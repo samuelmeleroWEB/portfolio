@@ -1,11 +1,11 @@
 import { Project } from '../types';
 
-import weatherImg from '../assets/images/projects/weather.jpg';
-import restaurantImg from '../assets/images/projects/restaurant.jpg';
-import cinemaImg from '../assets/images/projects/cinema.jpg';
-import calendarImg from '../assets/images/projects/calendar.jpg';
-import organizatorImg from '../assets/images/projects/organizatorimg.jpg';
-import portfolioImg from '../assets/images/projects/imgporfolio.jpg';
+import weatherImg from '../assets/images/projects/weather.webp';
+import restaurantImg from '../assets/images/projects/restaurant.webp';
+import cinemaImg from '../assets/images/projects/cinema.webp';
+import calendarImg from '../assets/images/projects/calendar.webp';
+import organizatorImg from '../assets/images/projects/organizatorimg.webp';
+import portfolioImg from '../assets/images/projects/imgporfolio.webp';
 
 export const projects: Project[] = [
     {
