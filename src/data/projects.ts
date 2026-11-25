@@ -46,7 +46,7 @@ export const projects: Project[] = [
         title: 'Reminder Calendar',
         description: 'Herramienta de planificación diaria con tareas, bloques horarios y prioridades.',
         stack: ['Angular', 'TypeScript', 'SCSS'],
-        demoUrl: 'https://samuelmeleroweb.github.io/ReminderCalendar/today',
+        demoUrl: 'https://samuelmeleroweb.github.io/ReminderCalendar/',
         githubUrl: 'https://github.com/samuelmeleroWEB/ReminderCalendar',
         image: calendarImg,
         badge: 'Mejorando',
