@@ -78,6 +78,7 @@ export default function App() {
       setRecruiter(inRecruiter);
       setMenuOpen(false);
       if (hash) requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'start' }));
+      else if (window.history.scrollRestoration === 'manual') window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
     restoreView();
     window.addEventListener('popstate', restoreView);
