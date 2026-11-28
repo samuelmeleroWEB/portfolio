@@ -8,6 +8,7 @@ import { WorkspaceDialog } from './WorkspaceControls';
 export type GallerySlide = {
   src: string;
   srcSet?: string;
+  cardImage?: string;
   width: number;
   height: number;
   alt: string;
@@ -107,8 +108,9 @@ export function ProjectMedia({ slides, sizes, title, tr }: {
   }
 
   function image(fullSize: boolean) {
-    return <img key={slide.src} src={slide.src} srcSet={fullSize ? undefined : slide.srcSet}
-      sizes={fullSize ? undefined : sizes} width={slide.width} height={slide.height}
+    const cardImage = fullSize ? undefined : slide.cardImage;
+    return <img key={slide.src} src={cardImage ?? slide.src} srcSet={fullSize ? undefined : slide.srcSet}
+      sizes={fullSize ? undefined : sizes} width={cardImage ? 960 : slide.width} height={cardImage ? 540 : slide.height}
       alt={slide.alt} loading={fullSize || index > 0 ? 'eager' : 'lazy'} decoding="async" draggable={false}
       onLoad={(event) => { event.currentTarget.dataset.loaded = ''; }} />;
   }

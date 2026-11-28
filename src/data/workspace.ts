@@ -10,14 +10,18 @@ import cineverseSeats from '../assets/images/projects/cineverse-butacas.webp';
 import cineverseCart from '../assets/images/projects/cineverse-carrito.webp';
 import cineverseAdmin from '../assets/images/projects/cineverse-admin.webp';
 import cineverseMobile from '../assets/images/projects/cineverse-movil.webp';
+import cineverseMobileCard from '../assets/images/projects/cineverse-movil-card.webp';
 import calendarSmall from '../assets/images/projects/calendar-640.webp';
 import organizatorAgenda from '../assets/images/projects/organizator-agenda.webp';
 import organizatorSmall from '../assets/images/projects/organizator-agenda-640.webp';
 import organizatorTasks from '../assets/images/projects/organizator-tareas.webp';
 import organizatorTasksSmall from '../assets/images/projects/organizator-tareas-640.webp';
 import organizatorTablet from '../assets/images/projects/organizator-tablet.webp';
+import organizatorTabletCard from '../assets/images/projects/organizator-tablet-card.webp';
 import organizatorMobile from '../assets/images/projects/organizator-movil.webp';
+import organizatorMobileCard from '../assets/images/projects/organizator-movil-card.webp';
 import organizatorLoading from '../assets/images/projects/organizator-carga.webp';
+import organizatorLoadingCard from '../assets/images/projects/organizator-carga-card.webp';
 import organizatorInitial from '../assets/images/projects/organizator-inicio.webp';
 import organizatorInitialSmall from '../assets/images/projects/organizator-inicio-640.webp';
 import portfolioSmall from '../assets/images/projects/imgporfolio-640.webp';
@@ -34,7 +38,7 @@ export type Translate = (es: string, en: string) => string;
 type Copy = readonly [string, string];
 type ArchitectureNode = { name: string | Copy; detail: Copy };
 export type ProjectVideo = { src: string; type: 'video/webm' | 'video/mp4' };
-export type ProjectScreenshot = { images: Copy; thumbnails?: Copy; caption: Copy; width: number; height: number; video?: ProjectVideo };
+export type ProjectScreenshot = { images: Copy; thumbnails?: Copy; cardImage?: string; caption: Copy; width: number; height: number; video?: ProjectVideo };
 type ProjectGallery = [ProjectScreenshot, ...ProjectScreenshot[]];
 const cineverseGallery: ProjectGallery = [
   { images: [cineverseCover, cineverseCover], thumbnails: [cineverseSmall, cineverseSmall], caption: ['Inicio con el estreno destacado y la cartelera del día', 'Home with a featured release and today’s screenings'], width: 1440, height: 1000 },
@@ -43,14 +47,14 @@ const cineverseGallery: ProjectGallery = [
   { images: [cineverseSeats, cineverseSeats], caption: ['Plano de butacas y resumen de la selección', 'Seat map and selection summary'], width: 1440, height: 1000 },
   { images: [cineverseCart, cineverseCart], caption: ['Carrito con una entrada y resumen del pedido', 'Cart with one ticket and an order summary'], width: 1440, height: 1000 },
   { images: [cineverseAdmin, cineverseAdmin], caption: ['Listado de películas del panel privado con datos simulados', 'Film list in the private admin panel with simulated data'], width: 1425, height: 1000 },
-  { images: [cineverseMobile, cineverseMobile], caption: ['Inicio en móvil a 375 px', 'Mobile home at 375 px'], width: 375, height: 812 },
+  { images: [cineverseMobile, cineverseMobile], cardImage: cineverseMobileCard, caption: ['Inicio en móvil a 375 px', 'Mobile home at 375 px'], width: 375, height: 812 },
 ];
 const organizatorGallery: ProjectGallery = [
   { images: [organizatorAgenda, organizatorAgenda], thumbnails: [organizatorSmall, organizatorSmall], caption: ['Agenda de ejemplo con resumen, horarios y prioridades', 'Sample agenda with a summary, times, and priorities'], width: 1440, height: 1143 },
   { images: [organizatorTasks, organizatorTasks], thumbnails: [organizatorTasksSmall, organizatorTasksSmall], caption: ['Configuración de tareas, turnos y bloques fijos junto a la agenda', 'Task, work-hour, and fixed-block settings alongside the agenda'], width: 1600, height: 1103 },
-  { images: [organizatorTablet, organizatorTablet], caption: ['Configuración y agenda en una columna a 768 px', 'Settings and agenda in a single column at 768 px'], width: 768, height: 1710 },
-  { images: [organizatorMobile, organizatorMobile], caption: ['Cronología con tareas, descanso y reunión a 320 px', 'Timeline with tasks, a break, and a meeting at 320 px'], width: 320, height: 1212 },
-  { images: [organizatorLoading, organizatorLoading], caption: ['Skeleton de carga con la estructura de la agenda a 375 px', 'Loading skeleton that follows the agenda layout at 375 px'], width: 375, height: 1168 },
+  { images: [organizatorTablet, organizatorTablet], cardImage: organizatorTabletCard, caption: ['Configuración y agenda en una columna a 768 px', 'Settings and agenda in a single column at 768 px'], width: 768, height: 1710 },
+  { images: [organizatorMobile, organizatorMobile], cardImage: organizatorMobileCard, caption: ['Cronología con tareas, descanso y reunión a 320 px', 'Timeline with tasks, a break, and a meeting at 320 px'], width: 320, height: 1212 },
+  { images: [organizatorLoading, organizatorLoading], cardImage: organizatorLoadingCard, caption: ['Skeleton de carga con la estructura de la agenda a 375 px', 'Loading skeleton that follows the agenda layout at 375 px'], width: 375, height: 1168 },
   { images: [organizatorInitial, organizatorInitial], thumbnails: [organizatorInitialSmall, organizatorInitialSmall], caption: ['Estado inicial con la configuración y la agenda vacía', 'Initial state with settings and an empty agenda'], width: 1280, height: 1016 },
 ];
 const agentflowTrace: ProjectScreenshot = {

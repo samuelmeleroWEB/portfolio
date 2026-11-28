@@ -94,10 +94,10 @@ const galleryAlternates: Record<string, readonly [string, string]> = {
 };
 
 function projectSlides(project: WorkspaceProject, tr: Translate): [GallerySlide, ...GallerySlide[]] {
-  const localize = ({ images, thumbnails, width, height, caption, video }: ProjectScreenshot): GallerySlide => {
+  const localize = ({ images, thumbnails, cardImage, width, height, caption, video }: ProjectScreenshot): GallerySlide => {
     const src = tr(...images);
     return {
-      src, width, height, video, alt: tr(...caption),
+      src, width, height, video, cardImage, alt: tr(...caption),
       srcSet: thumbnails && `${tr(...thumbnails)} 640w, ${src} ${width}w`,
     };
   };
