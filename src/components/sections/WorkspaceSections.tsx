@@ -11,8 +11,6 @@ import calendarGallery from '../../assets/images/projects/calendar-gallery.webp'
 import calendarGallerySmall from '../../assets/images/projects/calendar-gallery-640.webp';
 import portfolioGallery from '../../assets/images/projects/imgporfolio-gallery.webp';
 import portfolioGallerySmall from '../../assets/images/projects/imgporfolio-gallery-640.webp';
-import organizatorGallery from '../../assets/images/projects/organizatorimg-gallery.webp';
-import organizatorGallerySmall from '../../assets/images/projects/organizatorimg-gallery-640.webp';
 import restaurantGallery from '../../assets/images/projects/restaurant-gallery.webp';
 import restaurantGallerySmall from '../../assets/images/projects/restaurant-gallery-640.webp';
 import weatherGallery from '../../assets/images/projects/weather-gallery.webp';
@@ -81,7 +79,6 @@ export function Hero({ tr }: { tr: Translate }) {
 }
 
 const galleryImages: Record<string, readonly [string, string]> = {
-  p5: [organizatorGallery, organizatorGallerySmall],
   p4: [calendarGallery, calendarGallerySmall],
   p1: [weatherGallery, weatherGallerySmall],
   p2: [restaurantGallery, restaurantGallerySmall],
@@ -89,7 +86,6 @@ const galleryImages: Record<string, readonly [string, string]> = {
 };
 
 const galleryAlternates: Record<string, readonly [string, string]> = {
-  p5: ['Agenda con la planificación generada', 'Agenda with the generated schedule'],
   p4: ['Resumen de actividad y productividad', 'Activity and productivity overview'],
   p1: ['Previsión de Madrid en un día soleado', 'Madrid forecast on a sunny day'],
 };

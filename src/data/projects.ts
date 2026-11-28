@@ -4,7 +4,7 @@ import weatherImg from '../assets/images/projects/weather.webp';
 import restaurantImg from '../assets/images/projects/restaurant.webp';
 import cinemaImg from '../assets/images/projects/cineverse-inicio.webp';
 import calendarImg from '../assets/images/projects/calendar.webp';
-import organizatorImg from '../assets/images/projects/organizatorimg.webp';
+import organizatorImg from '../assets/images/projects/organizator-agenda.webp';
 import portfolioImg from '../assets/images/projects/imgporfolio.webp';
 
 export const projects: Project[] = [
@@ -55,9 +55,9 @@ export const projects: Project[] = [
     {
         id: 'p5',
         number: '05',
-        title: 'Organizador de Día',
-        description: 'App de organización personal con categorías, recordatorios y vista semanal.',
-        stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+        title: 'Organizator',
+        description: 'Planificador diario con IA, configuración de tareas y agenda cronológica en una interfaz editorial responsive.',
+        stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Clerk'],
         demoUrl: 'https://organizator-web.vercel.app/',
         githubUrl: 'https://github.com/samuelmeleroWEB/organizator-web',
         image: organizatorImg,

@@ -11,7 +11,15 @@ import cineverseCart from '../assets/images/projects/cineverse-carrito.webp';
 import cineverseAdmin from '../assets/images/projects/cineverse-admin.webp';
 import cineverseMobile from '../assets/images/projects/cineverse-movil.webp';
 import calendarSmall from '../assets/images/projects/calendar-640.webp';
-import organizatorSmall from '../assets/images/projects/organizatorimg-640.webp';
+import organizatorAgenda from '../assets/images/projects/organizator-agenda.webp';
+import organizatorSmall from '../assets/images/projects/organizator-agenda-640.webp';
+import organizatorTasks from '../assets/images/projects/organizator-tareas.webp';
+import organizatorTasksSmall from '../assets/images/projects/organizator-tareas-640.webp';
+import organizatorTablet from '../assets/images/projects/organizator-tablet.webp';
+import organizatorMobile from '../assets/images/projects/organizator-movil.webp';
+import organizatorLoading from '../assets/images/projects/organizator-carga.webp';
+import organizatorInitial from '../assets/images/projects/organizator-inicio.webp';
+import organizatorInitialSmall from '../assets/images/projects/organizator-inicio-640.webp';
 import portfolioSmall from '../assets/images/projects/imgporfolio-640.webp';
 import agentflowWorkflowEs from '../assets/images/projects/agentflow-es-workflow-1600.webp';
 import agentflowWorkflowEn from '../assets/images/projects/agentflow-en-workflow-1600.webp';
@@ -36,6 +44,14 @@ const cineverseGallery: ProjectGallery = [
   { images: [cineverseCart, cineverseCart], caption: ['Carrito con una entrada y resumen del pedido', 'Cart with one ticket and an order summary'], width: 1440, height: 1000 },
   { images: [cineverseAdmin, cineverseAdmin], caption: ['Listado de películas del panel privado con datos simulados', 'Film list in the private admin panel with simulated data'], width: 1425, height: 1000 },
   { images: [cineverseMobile, cineverseMobile], caption: ['Inicio en móvil a 375 px', 'Mobile home at 375 px'], width: 375, height: 812 },
+];
+const organizatorGallery: ProjectGallery = [
+  { images: [organizatorAgenda, organizatorAgenda], thumbnails: [organizatorSmall, organizatorSmall], caption: ['Agenda de ejemplo con resumen, horarios y prioridades', 'Sample agenda with a summary, times, and priorities'], width: 1440, height: 1143 },
+  { images: [organizatorTasks, organizatorTasks], thumbnails: [organizatorTasksSmall, organizatorTasksSmall], caption: ['Configuración de tareas, turnos y bloques fijos junto a la agenda', 'Task, work-hour, and fixed-block settings alongside the agenda'], width: 1600, height: 1103 },
+  { images: [organizatorTablet, organizatorTablet], caption: ['Configuración y agenda en una columna a 768 px', 'Settings and agenda in a single column at 768 px'], width: 768, height: 1710 },
+  { images: [organizatorMobile, organizatorMobile], caption: ['Cronología con tareas, descanso y reunión a 320 px', 'Timeline with tasks, a break, and a meeting at 320 px'], width: 320, height: 1212 },
+  { images: [organizatorLoading, organizatorLoading], caption: ['Skeleton de carga con la estructura de la agenda a 375 px', 'Loading skeleton that follows the agenda layout at 375 px'], width: 375, height: 1168 },
+  { images: [organizatorInitial, organizatorInitial], thumbnails: [organizatorInitialSmall, organizatorInitialSmall], caption: ['Estado inicial con la configuración y la agenda vacía', 'Initial state with settings and an empty agenda'], width: 1280, height: 1016 },
 ];
 const agentflowTrace: ProjectScreenshot = {
   images: [agentflowTraceEs, agentflowTraceEn],
@@ -62,8 +78,17 @@ const projectFacts: Record<string, { title: Copy; problem: Copy; features: Copy[
   },
   p5: {
     title: ['Organizator', 'Organizator'],
-    problem: ['Reunir tareas y recordatorios personales en una vista de planificación semanal.', 'Bring personal tasks and reminders into one weekly planning view.'],
-    features: [['Organización por categorías.', 'Category-based organization.'], ['Recordatorios y vista semanal.', 'Reminders and weekly view.']],
+    problem: ['Planificador diario con IA y una cronología de tareas, descansos y compromisos. El rediseño editorial en crema y rojo teja se adapta a móvil, tablet y escritorio.', 'An AI-powered daily planner with a timeline for tasks, breaks, and commitments. The cream and terracotta editorial redesign adapts to mobile, tablet, and desktop.'],
+    features: [
+      ['Configura turnos, bloques fijos y tareas con duración y prioridad. La agenda reúne el resumen del día y los horarios de cada bloque.', 'Set work hours, fixed blocks, and tasks with durations and priorities. The agenda brings together a daily summary and the timing of each block.'],
+      ['Controles con etiquetas accesibles, prioridades identificadas mediante texto e iconos y skeletons que reservan el espacio de la agenda durante la carga.', 'Controls have accessible labels, priorities use text and icons, and loading skeletons reserve space for the agenda.'],
+      ['La galería muestra una agenda de ejemplo. La autenticación con Clerk y la generación de agendas mediante IA quedan pendientes de verificación.', 'The gallery shows a sample agenda. Clerk authentication and AI-generated schedules are pending verification.'],
+    ],
+    gallery: organizatorGallery,
+    architecture: [
+      { name: 'Next.js 16 · React 19 · TypeScript', detail: ['Interfaz del planificador y lógica de la agenda.', 'Planner interface and scheduling logic.'] },
+      { name: 'Tailwind CSS 4 · Framer Motion', detail: ['Estilos y transiciones de la interfaz editorial.', 'Styling and transitions for the editorial interface.'] },
+    ],
   },
   p4: {
     title: ['Reminder Calendar', 'Reminder Calendar'],
@@ -97,7 +122,7 @@ const projectFacts: Record<string, { title: Copy; problem: Copy; features: Copy[
 
 const previews = {
   p3: [cineverseSmall, 1440, 1000],
-  p5: [organizatorSmall, 994, 967],
+  p5: [organizatorSmall, 1440, 1143],
   p4: [calendarSmall, 1440, 769],
   p1: [weatherSmall, 1440, 736],
   p2: [restaurantSmall, 1440, 960],
