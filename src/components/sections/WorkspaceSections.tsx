@@ -91,13 +91,18 @@ const galleryImages: Record<string, readonly [string, string]> = {
 
 export function ProjectGallery({ tr, open }: { tr: Translate; open: (project: WorkspaceProject) => void }) {
   const exhibit = (project: WorkspaceProject) => {
-    const [image, small] = galleryImages[project.id];
+    const featured = project.featured;
+    const cover = featured?.cover;
+    const [image, small] = cover
+      ? [tr(...cover.images), cover.thumbnails && tr(...cover.thumbnails)]
+      : galleryImages[project.id];
+    const width = cover?.width ?? 1920;
 
-    return <article key={project.id} className="gallery-project" aria-labelledby={`title-${project.id}`}>
+    return <article key={project.id} className={featured ? 'gallery-project gallery-featured' : 'gallery-project'} aria-labelledby={`title-${project.id}`}>
       <figure className="gallery-screen">
-        <img src={image} srcSet={`${small} 640w, ${image} 1920w`}
-          sizes="(min-width: 1600px) 700px, (min-width: 720px) 43.5vw, 90vw"
-          width="1920" height="1080" alt={tr('Vista de ', 'Preview of ') + tr(...project.title)}
+        <img src={image} srcSet={small && `${small} 640w, ${image} ${width}w`}
+          sizes={featured ? '(min-width: 1600px) 820px, (min-width: 900px) 53vw, 90vw' : '(min-width: 1600px) 700px, (min-width: 720px) 43.5vw, 90vw'}
+          width={width} height={cover?.height ?? 1080} alt={cover ? tr(...cover.caption) : tr('Vista de ', 'Preview of ') + tr(...project.title)}
           loading="lazy" decoding="async" />
       </figure>
       <div className="gallery-details">
@@ -108,10 +113,13 @@ export function ProjectGallery({ tr, open }: { tr: Translate; open: (project: Wo
           {project.stack.map((tool) => <li key={tool}>{tool}</li>)}
         </ul>
         <div className="gallery-actions">
-          {project.demoUrl && project.demoUrl !== '#' && <ExternalLink href={project.demoUrl} className="button gallery-demo">Demo<FiArrowUpRight aria-hidden="true" /></ExternalLink>}
+          {project.demoUrl && project.demoUrl !== '#' && <ExternalLink href={project.demoUrl} className={featured ? 'button button-accent' : 'button gallery-demo'}>
+            {featured ? tr('Probar demo', 'Try demo') : <>Demo<FiArrowUpRight aria-hidden="true" /></>}
+          </ExternalLink>}
           {project.githubUrl && <ExternalLink href={project.githubUrl} className="button button-line"><FiGithub aria-hidden="true" />GitHub</ExternalLink>}
           <button type="button" className="button gallery-detail" aria-haspopup="dialog" onClick={() => open(project)}>{tr('Detalles', 'Details')}<FiPlus aria-hidden="true" /></button>
         </div>
+        {featured && <p className="project-demo-note">{tr(...featured.demoNote)}</p>}
       </div>
     </article>;
   };
@@ -130,6 +138,7 @@ export function ProjectGallery({ tr, open }: { tr: Translate; open: (project: Wo
 }
 
 export function projectStatus(project: WorkspaceProject, tr: Translate) {
+  if (project.featured) return tr('Proyecto destacado', 'Featured project');
   if (project.badgeType === 'warning') return tr('En desarrollo', 'In development');
   if (project.badgeType === 'info') return tr('En mejora', 'Being improved');
   return tr('Demo publicada', 'Published demo');
@@ -139,16 +148,28 @@ export function ProjectDetail({ project, tr }: { project: WorkspaceProject; tr: 
   const [active, setActive] = useState(0);
   const id = useId();
   const node = project.architecture?.[active];
+  const featured = project.featured;
 
   return <article className="project-detail">
     <dl className="detail-meta"><div><dt>{tr('Estado', 'Status')}</dt><dd>{projectStatus(project, tr)}</dd></div><div><dt>Stack</dt><dd>{project.stack.join(' / ')}</dd></div></dl>
-    <figure className="detail-screen">
+    {featured ? <figure className="detail-screen">
+      <img src={tr(...featured.cover.images)} width={featured.cover.width} height={featured.cover.height} alt={tr(...featured.cover.caption)} decoding="async" />
+    </figure> : <figure className="detail-screen">
       <img {...project.preview} sizes="(min-width: 850px) 780px, 90vw" alt={tr('Vista de ', 'Preview of ') + tr(...project.title)} decoding="async" />
       <figcaption>{tr(...project.title)}</figcaption>
-    </figure>
-    <h3>{tr('Problema', 'Problem')}</h3><p>{tr(...project.problem)}</p>
+    </figure>}
+    <h3>{featured ? tr('Descripción', 'Overview') : tr('Problema', 'Problem')}</h3><p>{tr(...project.problem)}</p>
     <h3>{project.badgeType === 'warning' ? tr('Alcance documentado', 'Documented scope') : tr('Funcionalidades', 'Features')}</h3>
     <ul className="feature-list">{project.features.map((feature) => <li key={feature[0]}>{tr(...feature)}</li>)}</ul>
+    {featured && <>
+      <p>{tr(...featured.tests)}</p>
+      <div className="featured-screenshots">
+        {featured.screenshots.map(({ images, caption, width, height }) => <figure className="detail-screen" key={images[0]}>
+          <img src={tr(...images)} width={width} height={height} alt={tr(...caption)} loading="lazy" decoding="async" />
+          <figcaption>{tr(...caption)}</figcaption>
+        </figure>)}
+      </div>
+    </>}
     {project.architecture && node && <>
       <h3>{tr('Arquitectura', 'Architecture')}</h3>
       <ol className="architecture" aria-label={tr('Capas de arquitectura', 'Architecture layers')}>
@@ -160,9 +181,12 @@ export function ProjectDetail({ project, tr }: { project: WorkspaceProject; tr: 
       <p id={id} className="architecture-note" aria-live="polite">{tr(...node.detail)}</p>
     </>}
     <div className="detail-links">
-      {project.demoUrl && project.demoUrl !== '#' && <ExternalLink className="button button-accent" href={project.demoUrl}>{tr('Abrir demo', 'Open demo')}</ExternalLink>}
+      {project.demoUrl && project.demoUrl !== '#' && <ExternalLink className="button button-accent" href={project.demoUrl}>
+        {featured ? tr('Probar demo', 'Try demo') : tr('Abrir demo', 'Open demo')}
+      </ExternalLink>}
       {project.githubUrl && <ExternalLink className="button button-line" href={project.githubUrl}><FiGithub aria-hidden="true" /> GitHub</ExternalLink>}
     </div>
+    {featured && <p className="project-demo-note">{tr(...featured.demoNote)}</p>}
   </article>;
 }
 
@@ -304,7 +328,7 @@ export function Recruiter({ tr, open, openCertificate, certificateTitle }: {
       </section>
       <CertificateList tr={tr} title={certificateTitle} open={openCertificate} id="recruiter-certificates" />
       <section id="recruiter-projects" tabIndex={-1}><h2>{tr('Proyectos destacados', 'Selected projects')}</h2>
-        <ol className="recruiter-projects">{workspaceProjects.slice(0, 4).map((project) => <li key={project.id}><button type="button" onClick={() => open(project)}>{tr(...project.title)}<FiPlus aria-hidden="true" /></button><p>{tr(...project.problem)}</p></li>)}</ol>
+        <ol className="recruiter-projects">{workspaceProjects.slice(0, 5).map((project) => <li key={project.id}><button type="button" onClick={() => open(project)}>{tr(...project.title)}<FiPlus aria-hidden="true" /></button><p>{tr(...project.problem)}</p></li>)}</ol>
       </section>
     </div>
   </div>;

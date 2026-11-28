@@ -6,10 +6,19 @@ import cinemaSmall from '../assets/images/projects/cinema-640.webp';
 import calendarSmall from '../assets/images/projects/calendar-640.webp';
 import organizatorSmall from '../assets/images/projects/organizatorimg-640.webp';
 import portfolioSmall from '../assets/images/projects/imgporfolio-640.webp';
+import agentflowWorkflowEs from '../assets/images/projects/agentflow-es-workflow-1600.webp';
+import agentflowWorkflowEn from '../assets/images/projects/agentflow-en-workflow-1600.webp';
+import agentflowWorkflowSmallEs from '../assets/images/projects/agentflow-es-workflow-640.webp';
+import agentflowWorkflowSmallEn from '../assets/images/projects/agentflow-en-workflow-640.webp';
+import agentflowKnowledgeEs from '../assets/images/projects/agentflow-es-knowledge-1280.webp';
+import agentflowKnowledgeEn from '../assets/images/projects/agentflow-en-knowledge-1280.webp';
+import agentflowTraceEs from '../assets/images/projects/agentflow-es-trace-1280.webp';
+import agentflowTraceEn from '../assets/images/projects/agentflow-en-trace-1280.webp';
 
 export type Translate = (es: string, en: string) => string;
 type Copy = readonly [string, string];
 type ArchitectureNode = { name: string | Copy; detail: Copy };
+type ProjectScreenshot = { images: Copy; thumbnails?: Copy; caption: Copy; width: number; height: number };
 
 const projectFacts: Record<string, { title: Copy; problem: Copy; features: Copy[]; architecture?: ArchitectureNode[] }> = {
   p3: {
@@ -72,7 +81,7 @@ const previews = {
 
 const projectOrder = ['p3', 'p5', 'p4', 'p1', 'p2', 'p6'] as const;
 
-export const workspaceProjects = projectOrder.map((id, index) => {
+const otherProjects = projectOrder.map((id, index) => {
   const project = projects.find((item) => item.id === id)!;
   const [small, width, height] = previews[id];
   return {
@@ -82,7 +91,50 @@ export const workspaceProjects = projectOrder.map((id, index) => {
     preview: { src: project.image, srcSet: `${small} 640w, ${project.image} ${width}w`, width, height },
   };
 });
-export type WorkspaceProject = (typeof workspaceProjects)[number];
+export type WorkspaceProject = Omit<(typeof otherProjects)[number], 'description' | 'preview'> & {
+  preview?: (typeof otherProjects)[number]['preview'];
+  featured?: {
+    cover: ProjectScreenshot;
+    screenshots: ProjectScreenshot[];
+    demoNote: Copy;
+    tests: Copy;
+  };
+};
+
+export const workspaceProjects: WorkspaceProject[] = [
+  {
+    id: 'agentflow-ai',
+    number: '00',
+    title: ['AgentFlow AI', 'AgentFlow AI'],
+    problem: [
+      'Plataforma de automatización empresarial con agentes de IA, flujos visuales y gestión documental. Permite coordinar tareas y revisar decisiones antes de aprobarlas.',
+      'A business automation platform with AI agents, visual workflows, and document management. It coordinates tasks and lets people review decisions before approving them.',
+    ],
+    stack: ['React', 'TypeScript', 'Vite', 'React Flow', 'FastAPI', 'SQLAlchemy', 'Alembic', 'SQLite', 'LangGraph', 'RAG', 'MCP'],
+    demoUrl: 'https://agentflow-ai-demo-fiea.onrender.com/demo',
+    features: [
+      ['Editor visual con pasos de agente, herramientas, condiciones y aprobaciones humanas.', 'Visual editor with agent steps, tools, conditions, and human approvals.'],
+      ['Diseño de agentes y biblioteca documental con búsqueda semántica y citas de las fuentes.', 'Agent design and a document library with semantic search and source citations.'],
+      ['Automatización de flujos mediante una cola persistente e historial con estados por paso y resultados de herramientas.', 'Workflow automation backed by a persistent queue, with a run history that records step status and tool results.'],
+    ],
+    featured: {
+      cover: {
+        images: [agentflowWorkflowEs, agentflowWorkflowEn],
+        thumbnails: [agentflowWorkflowSmallEs, agentflowWorkflowSmallEn],
+        caption: ['Editor visual de flujos con nodos y ramas', 'Visual workflow editor with nodes and branches'],
+        width: 1600,
+        height: 900,
+      },
+      screenshots: [
+        { images: [agentflowKnowledgeEs, agentflowKnowledgeEn], caption: ['Biblioteca documental con búsqueda y visor de extractos', 'Document library with search and a passage viewer'], width: 1280, height: 720 },
+        { images: [agentflowTraceEs, agentflowTraceEn], caption: ['Historial de una devolución con consulta documental y aprobación humana', 'Return workflow history with document lookup and human approval'], width: 1280, height: 720 },
+      ],
+      demoNote: ['La demo utiliza ejecuciones simuladas.', 'The demo uses simulated runs.'],
+      tests: ['Backend · 76 pruebas y 26 subpruebas superadas.', 'Backend · 76 tests and 26 subtests passed.'],
+    },
+  },
+  ...otherProjects,
+];
 
 type Group = 'frontend' | 'backend' | 'data' | 'tools' | 'ai' | 'security';
 type Level = 'acquired' | 'basic' | 'learning' | 'practice' | 'interest';
