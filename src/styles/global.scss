@@ -452,6 +452,9 @@ kbd { font: inherit; }
 .detail-meta { display: flex; flex-wrap: wrap; gap: .65rem 1.5rem; padding-block: .8rem; border-top: 1px solid var(--line); margin-bottom: .65rem; }
 .detail-meta dt { color: var(--muted); font: .75rem var(--mono); }
 .detail-meta dd { font-weight: 700; }
+.detail-stack { flex-basis: 100%; margin-bottom: .75rem; }
+.detail-stack dd { display: flex; flex-wrap: wrap; gap: .25rem .85rem; }
+.technology-icon { width: 1em; height: 1em; margin-inline-end: .35em; vertical-align: -.12em; }
 .detail-screen img, .certificate-detail img { width: 100%; height: auto; max-height: 54dvh; object-fit: contain; border-radius: 12px; background: #10120e; }
 .detail-screen figcaption, .certificate-detail figcaption { color: var(--muted); font-size: .85rem; margin-top: .35rem; }
 .project-detail h3 { margin-top: 1.1rem; }

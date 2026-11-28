@@ -1,12 +1,15 @@
 import { useId, useState } from 'react';
 import type { PointerEvent, ReactNode } from 'react';
 import { FiArrowUpRight, FiCopy, FiDownload, FiGithub, FiLinkedin, FiPlus } from 'react-icons/fi';
+import { SiFastapi, SiOpenai, SiPytest, SiPython, SiReact, SiSqlalchemy, SiSqlite, SiTypescript, SiVite, SiVitest } from 'react-icons/si';
+import type { IconType } from 'react-icons';
 import { siteConfig } from '../../data/config';
 import { certifications } from '../../data/certifications';
 import { aiLevels, aiSkills, groups, levels, milestones, profile, relations, technologies, technologyName, workspaceProjects } from '../../data/workspace';
 import type { ProjectScreenshot, Translate, WorkspaceProject } from '../../data/workspace';
 import { labDemos } from '../../data/lab';
 import portrait from '../../assets/images/projects/imgprofile.webp';
+import playwrightLogo from '../../assets/images/playwright.svg';
 import calendarGallery from '../../assets/images/projects/calendar-gallery.webp';
 import calendarGallerySmall from '../../assets/images/projects/calendar-gallery-640.webp';
 import portfolioGallery from '../../assets/images/projects/imgporfolio-gallery.webp';
@@ -170,6 +173,16 @@ export function projectStatus(project: WorkspaceProject, tr: Translate) {
   return tr('Demo publicada', 'Published demo');
 }
 
+const technologyIcons: Partial<Record<string, IconType>> = {
+  React: SiReact, TypeScript: SiTypescript, Vite: SiVite, Python: SiPython, FastAPI: SiFastapi,
+  SQLAlchemy: SiSqlalchemy, SQLite: SiSqlite, 'OpenAI API': SiOpenai, Vitest: SiVitest, pytest: SiPytest,
+};
+
+function TechnologyLabel({ name, label = name }: { name: string; label?: string }) {
+  const Icon = technologyIcons[name];
+  return <>{name === 'Playwright' && <img className="technology-icon" src={playwrightLogo} alt="" />}{Icon && <Icon className="technology-icon" aria-hidden="true" />}{label}</>;
+}
+
 export function ProjectDetail({ project, tr }: { project: WorkspaceProject; tr: Translate }) {
   const [active, setActive] = useState(0);
   const id = useId();
@@ -177,7 +190,17 @@ export function ProjectDetail({ project, tr }: { project: WorkspaceProject; tr: 
   const featured = project.featured;
 
   return <article className="project-detail">
-    <dl className="detail-meta"><div><dt>{tr('Estado', 'Status')}</dt><dd>{projectStatus(project, tr)}</dd></div><div><dt>Stack</dt><dd>{project.stack.join(' / ')}</dd></div></dl>
+    <dl className="detail-meta">
+      <div><dt>{tr('Estado', 'Status')}</dt><dd>{projectStatus(project, tr)}</dd></div>
+      {featured ? Object.entries(groups).map(([group, label]) => {
+        const items = technologies.filter((item) => item.group === group && project.stack.includes(item.name));
+        if (!items.length) return null;
+        return <div className="detail-stack" key={group}>
+          <dt>{group === 'tools' ? tr('Pruebas', 'Testing') : tr(...label)}</dt>
+          <dd>{items.map((item) => <span key={item.name}><TechnologyLabel name={item.name} label={technologyName(item, tr)} /></span>)}</dd>
+        </div>;
+      }) : <div><dt>Stack</dt><dd>{project.stack.join(' / ')}</dd></div>}
+    </dl>
     {featured ? <figure className="detail-screen">
       <img src={tr(...featured.cover.images)} width={featured.cover.width} height={featured.cover.height} alt={tr(...featured.cover.caption)} decoding="async" />
     </figure> : <figure className="detail-screen">
@@ -244,7 +267,7 @@ export function TechnologyMap({ tr, technology, select, open }: {
             })}
           </div>
           <div className="tech-options" role="group" aria-label={tr(...groups[selected.group])}>
-            {technologies.filter((item) => item.group === selected.group).map((item) => <button type="button" key={item.name} aria-pressed={item.name === selected.name} onClick={() => select(item.name)}>{technologyName(item, tr)}</button>)}
+            {technologies.filter((item) => item.group === selected.group).map((item) => <button type="button" key={item.name} aria-pressed={item.name === selected.name} onClick={() => select(item.name)}><TechnologyLabel name={item.name} label={technologyName(item, tr)} /></button>)}
           </div>
         </div>
         <article className="tech-inspector">
