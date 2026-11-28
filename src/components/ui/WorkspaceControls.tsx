@@ -2,12 +2,13 @@ import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { FormEvent, KeyboardEvent, ReactNode } from 'react';
 import type { Translate } from '../../data/workspace';
 
-export function WorkspaceDialog({ title, closeLabel, close, children, kind }: {
+export function WorkspaceDialog({ title, closeLabel, close, children, kind, onKeyDown }: {
   title: string;
   closeLabel: string;
   close: () => void;
   children: ReactNode;
-  kind?: 'palette';
+  kind?: 'palette' | 'image-viewer';
+  onKeyDown?: (event: KeyboardEvent<HTMLDialogElement>) => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const titleId = useId();
@@ -20,7 +21,9 @@ export function WorkspaceDialog({ title, closeLabel, close, children, kind }: {
       if (viewport) element.style.setProperty('--visible-height', `${viewport.height}px`);
     };
     element.showModal();
-    const focusTarget = window.matchMedia('(pointer: coarse)').matches ? '.close-button' : '[data-dialog-focus]';
+    const focusTarget = element.classList.contains('image-viewer') || window.matchMedia('(pointer: coarse)').matches
+      ? '.close-button'
+      : '[data-dialog-focus]';
     (element.querySelector<HTMLElement>(focusTarget) ?? element).focus({ preventScroll: true });
     updateHeight();
     viewport?.addEventListener('resize', updateHeight);
@@ -34,9 +37,10 @@ export function WorkspaceDialog({ title, closeLabel, close, children, kind }: {
   return (
     <dialog
       ref={dialog}
-      className={kind === 'palette' ? 'workspace-dialog palette' : 'workspace-dialog'}
+      className={kind ? `workspace-dialog ${kind}` : 'workspace-dialog'}
       aria-labelledby={titleId}
       tabIndex={-1}
+      onKeyDown={onKeyDown}
       onCancel={(event) => { event.preventDefault(); close(); }}
       onClick={(event) => {
         if (event.target !== event.currentTarget) return;

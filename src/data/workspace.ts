@@ -18,7 +18,14 @@ import agentflowTraceEn from '../assets/images/projects/agentflow-en-trace-1280.
 export type Translate = (es: string, en: string) => string;
 type Copy = readonly [string, string];
 type ArchitectureNode = { name: string | Copy; detail: Copy };
-type ProjectScreenshot = { images: Copy; thumbnails?: Copy; caption: Copy; width: number; height: number };
+export type ProjectVideo = { src: string; type: 'video/webm' | 'video/mp4' };
+type ProjectScreenshot = { images: Copy; thumbnails?: Copy; caption: Copy; width: number; height: number; video?: ProjectVideo };
+const agentflowTrace: ProjectScreenshot = {
+  images: [agentflowTraceEs, agentflowTraceEn],
+  caption: ['Historial de una devolución con consulta documental y aprobación humana', 'Return workflow history with document lookup and human approval'],
+  width: 1280,
+  height: 720,
+};
 
 const projectFacts: Record<string, { title: Copy; problem: Copy; features: Copy[]; architecture?: ArchitectureNode[] }> = {
   p3: {
@@ -93,8 +100,10 @@ const otherProjects = projectOrder.map((id, index) => {
 });
 export type WorkspaceProject = Omit<(typeof otherProjects)[number], 'description' | 'preview'> & {
   preview?: (typeof otherProjects)[number]['preview'];
+  galleryVideo?: ProjectVideo;
   featured?: {
     cover: ProjectScreenshot;
+    galleryLead?: ProjectScreenshot;
     screenshots: ProjectScreenshot[];
     demoNote: Copy;
     tests: Copy;
@@ -118,6 +127,7 @@ export const workspaceProjects: WorkspaceProject[] = [
       ['Automatización de flujos mediante una cola persistente e historial con estados por paso y resultados de herramientas.', 'Workflow automation backed by a persistent queue, with a run history that records step status and tool results.'],
     ],
     featured: {
+      galleryLead: agentflowTrace,
       cover: {
         images: [agentflowWorkflowEs, agentflowWorkflowEn],
         thumbnails: [agentflowWorkflowSmallEs, agentflowWorkflowSmallEn],
@@ -127,7 +137,7 @@ export const workspaceProjects: WorkspaceProject[] = [
       },
       screenshots: [
         { images: [agentflowKnowledgeEs, agentflowKnowledgeEn], caption: ['Biblioteca documental con búsqueda y visor de extractos', 'Document library with search and a passage viewer'], width: 1280, height: 720 },
-        { images: [agentflowTraceEs, agentflowTraceEn], caption: ['Historial de una devolución con consulta documental y aprobación humana', 'Return workflow history with document lookup and human approval'], width: 1280, height: 720 },
+        agentflowTrace,
       ],
       demoNote: ['La demo utiliza ejecuciones simuladas.', 'The demo uses simulated runs.'],
       tests: ['Backend · 76 pruebas y 26 subpruebas superadas.', 'Backend · 76 tests and 26 subtests passed.'],

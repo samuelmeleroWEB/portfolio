@@ -20,6 +20,8 @@ import restaurantGallerySmall from '../../assets/images/projects/restaurant-gall
 import weatherGallery from '../../assets/images/projects/weather-gallery.webp';
 import weatherGallerySmall from '../../assets/images/projects/weather-gallery-640.webp';
 import { ContactForm } from './WorkspaceContact';
+import { ProjectMedia } from '../ui/ProjectMedia';
+import type { GallerySlide } from '../ui/ProjectMedia';
 
 export function ExternalLink({ href, children, className }: { href: string; children: ReactNode; className?: string }) {
   return <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}</a>;
@@ -89,25 +91,50 @@ const galleryImages: Record<string, readonly [string, string]> = {
   p6: [portfolioGallery, portfolioGallerySmall],
 };
 
+const galleryAlternates: Record<string, readonly [string, string]> = {
+  p5: ['Agenda con la planificación generada', 'Agenda with the generated schedule'],
+  p4: ['Resumen de actividad y productividad', 'Activity and productivity overview'],
+  p1: ['Previsión de Madrid en un día soleado', 'Madrid forecast on a sunny day'],
+};
+
+function projectSlides(project: WorkspaceProject, tr: Translate): [GallerySlide, ...GallerySlide[]] {
+  const featured = project.featured;
+  if (featured) {
+    const { cover, screenshots, galleryLead = cover } = featured;
+    const localize = ({ images, thumbnails, width, height, caption, video }: typeof cover): GallerySlide => {
+      const src = tr(...images);
+      return {
+        src, width, height, video, alt: tr(...caption),
+        srcSet: thumbnails && `${tr(...thumbnails)} 640w, ${src} ${width}w`,
+      };
+    };
+    return [localize(galleryLead), ...[cover, ...screenshots].filter((item) => item !== galleryLead).map(localize)];
+  }
+
+  const [src, small] = galleryImages[project.id];
+  const slides: [GallerySlide, ...GallerySlide[]] = [{
+    src, srcSet: `${small} 640w, ${src} 1920w`, width: 1920, height: 1080,
+    video: project.galleryVideo,
+    alt: tr('Vista de ', 'Preview of ') + tr(...project.title),
+  }];
+  const alternate = galleryAlternates[project.id];
+  if (alternate && project.preview?.src) {
+    slides.push({ ...project.preview, src: project.preview.src, alt: tr(...alternate) });
+  }
+  return slides;
+}
+
 export function ProjectGallery({ tr, open }: { tr: Translate; open: (project: WorkspaceProject) => void }) {
   const exhibit = (project: WorkspaceProject) => {
     const featured = project.featured;
-    const cover = featured?.cover;
-    const [image, small] = cover
-      ? [tr(...cover.images), cover.thumbnails && tr(...cover.thumbnails)]
-      : galleryImages[project.id];
-    const width = cover?.width ?? 1920;
+    const title = tr(...project.title);
 
     return <article key={project.id} className={featured ? 'gallery-project gallery-featured' : 'gallery-project'} aria-labelledby={`title-${project.id}`}>
-      <figure className="gallery-screen">
-        <img src={image} srcSet={small && `${small} 640w, ${image} ${width}w`}
-          sizes={featured ? '(min-width: 1600px) 820px, (min-width: 900px) 53vw, 90vw' : '(min-width: 1600px) 700px, (min-width: 720px) 43.5vw, 90vw'}
-          width={width} height={cover?.height ?? 1080} alt={cover ? tr(...cover.caption) : tr('Vista de ', 'Preview of ') + tr(...project.title)}
-          loading="lazy" decoding="async" />
-      </figure>
+      <ProjectMedia slides={projectSlides(project, tr)} title={title} tr={tr}
+        sizes={featured ? '(min-width: 1600px) 820px, (min-width: 900px) 53vw, 90vw' : '(min-width: 1600px) 700px, (min-width: 720px) 43.5vw, 90vw'} />
       <div className="gallery-details">
         <p className="gallery-status mono">{projectStatus(project, tr)}</p>
-        <h3 id={`title-${project.id}`}>{tr(...project.title)}</h3>
+        <h3 id={`title-${project.id}`}>{title}</h3>
         <p>{tr(...project.problem)}</p>
         <ul className="gallery-stack mono" aria-label={tr('Tecnologías', 'Technologies')}>
           {project.stack.map((tool) => <li key={tool}>{tool}</li>)}
