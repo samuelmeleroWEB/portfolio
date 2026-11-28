@@ -141,8 +141,7 @@ kbd { font: inherit; }
   border: 1px solid #4b5536;
 }
 .portrait-window { width: 70%; height: 81%; position: relative; overflow: hidden; background: #afb68b; border: 1px solid #c1c997; }
-.portrait-window::after { content: ''; pointer-events: none; position: absolute; inset: 0; background: #bdca74; mix-blend-mode: multiply; opacity: .24; }
-.portrait-window img { object-fit: cover; width: 100%; height: 100%; filter: grayscale(1) contrast(1.05); }
+.portrait-window img { object-fit: cover; width: 100%; height: 100%; }
 .portrait-cross { color: var(--lime); font: 1.8rem/1 var(--mono); position: absolute; z-index: 1; }
 .portrait-cross-top { top: .65rem; left: .8rem; }
 .portrait-cross-bottom { bottom: .65rem; right: .8rem; }
