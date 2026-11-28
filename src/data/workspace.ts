@@ -2,7 +2,14 @@ import { projects } from './projects';
 import { skills } from './skills';
 import weatherSmall from '../assets/images/projects/weather-640.webp';
 import restaurantSmall from '../assets/images/projects/restaurant-640.webp';
-import cinemaSmall from '../assets/images/projects/cinema-640.webp';
+import cineverseCover from '../assets/images/projects/cineverse-inicio.webp';
+import cineverseSmall from '../assets/images/projects/cineverse-inicio-640.webp';
+import cineverseBillboard from '../assets/images/projects/cineverse-cartelera.webp';
+import cineverseMovie from '../assets/images/projects/cineverse-ficha.webp';
+import cineverseSeats from '../assets/images/projects/cineverse-butacas.webp';
+import cineverseCart from '../assets/images/projects/cineverse-carrito.webp';
+import cineverseAdmin from '../assets/images/projects/cineverse-admin.webp';
+import cineverseMobile from '../assets/images/projects/cineverse-movil.webp';
 import calendarSmall from '../assets/images/projects/calendar-640.webp';
 import organizatorSmall from '../assets/images/projects/organizatorimg-640.webp';
 import portfolioSmall from '../assets/images/projects/imgporfolio-640.webp';
@@ -19,7 +26,17 @@ export type Translate = (es: string, en: string) => string;
 type Copy = readonly [string, string];
 type ArchitectureNode = { name: string | Copy; detail: Copy };
 export type ProjectVideo = { src: string; type: 'video/webm' | 'video/mp4' };
-type ProjectScreenshot = { images: Copy; thumbnails?: Copy; caption: Copy; width: number; height: number; video?: ProjectVideo };
+export type ProjectScreenshot = { images: Copy; thumbnails?: Copy; caption: Copy; width: number; height: number; video?: ProjectVideo };
+type ProjectGallery = [ProjectScreenshot, ...ProjectScreenshot[]];
+const cineverseGallery: ProjectGallery = [
+  { images: [cineverseCover, cineverseCover], thumbnails: [cineverseSmall, cineverseSmall], caption: ['Inicio con el estreno destacado y la cartelera del día', 'Home with a featured release and today’s screenings'], width: 1440, height: 1000 },
+  { images: [cineverseBillboard, cineverseBillboard], caption: ['Cartelera con buscador y selector de fecha', 'Now showing with search and a date picker'], width: 1440, height: 1000 },
+  { images: [cineverseMovie, cineverseMovie], caption: ['Ficha de película con sinopsis y sesiones', 'Film details with synopsis and screenings'], width: 1440, height: 1000 },
+  { images: [cineverseSeats, cineverseSeats], caption: ['Plano de butacas y resumen de la selección', 'Seat map and selection summary'], width: 1440, height: 1000 },
+  { images: [cineverseCart, cineverseCart], caption: ['Carrito con una entrada y resumen del pedido', 'Cart with one ticket and an order summary'], width: 1440, height: 1000 },
+  { images: [cineverseAdmin, cineverseAdmin], caption: ['Listado de películas del panel privado con datos simulados', 'Film list in the private admin panel with simulated data'], width: 1425, height: 1000 },
+  { images: [cineverseMobile, cineverseMobile], caption: ['Inicio en móvil a 375 px', 'Mobile home at 375 px'], width: 375, height: 812 },
+];
 const agentflowTrace: ProjectScreenshot = {
   images: [agentflowTraceEs, agentflowTraceEn],
   caption: ['Historial de una devolución con consulta documental y aprobación humana', 'Return workflow history with document lookup and human approval'],
@@ -27,15 +44,16 @@ const agentflowTrace: ProjectScreenshot = {
   height: 720,
 };
 
-const projectFacts: Record<string, { title: Copy; problem: Copy; features: Copy[]; architecture?: ArchitectureNode[] }> = {
+const projectFacts: Record<string, { title: Copy; problem: Copy; features: Copy[]; architecture?: ArchitectureNode[]; gallery?: ProjectGallery }> = {
   p3: {
     title: ['Cineverse', 'Cineverse'],
-    problem: ['Centralizar la gestión de un cine, desde la programación de sesiones hasta las reservas de entradas.', 'Centralize cinema operations, from screening schedules to ticket reservations.'],
+    problem: ['Rediseño responsive en React y TypeScript de la web de reservas de cine y su panel privado de administración. La experiencia pública va de la cartelera y los horarios a la selección de butacas y el carrito.', 'Responsive redesign of a cinema booking site and its private admin panel using React and TypeScript. The public experience runs from film listings and showtimes to seat selection and the cart.'],
     features: [
-      ['Administración de películas, salas, sesiones y usuarios.', 'Management of films, screens, screenings and users.'],
-      ['Reservas de entradas.', 'Ticket reservations.'],
-      ['Autenticación JWT y permisos de administrador y usuario.', 'JWT authentication and admin/user permissions.'],
+      ['Selección de butacas por teclado, gestión del foco en modales y skeletons adaptados al contenido y a la preferencia de movimiento reducido.', 'Keyboard seat selection, dialog focus management, and loading skeletons that match the content and respect reduced-motion preferences.'],
+      ['Panel privado con vistas de películas, salas, sesiones y usuarios. La galería muestra datos simulados de administración.', 'Private panel with views for films, screens, screenings, and users. The gallery shows simulated admin data.'],
+      ['La auditoría pública cubrió la selección de butacas y el carrito local. La compra efectiva, el perfil, las reservas y la administración con sesión autorizada siguen pendientes de verificación.', 'The public audit covered seat selection and the local cart. Checkout, profiles, reservations, and administration with an authorized session are still pending verification.'],
     ],
+    gallery: cineverseGallery,
     architecture: [
       { name: 'React · TypeScript', detail: ['Interfaz web para el catálogo, las reservas y la administración.', 'Web interface for the catalog, bookings and administration.'] },
       { name: 'Node.js · Express', detail: ['API REST con autenticación JWT y autorización por roles.', 'REST API with JWT authentication and role-based authorization.'] },
@@ -78,7 +96,7 @@ const projectFacts: Record<string, { title: Copy; problem: Copy; features: Copy[
 };
 
 const previews = {
-  p3: [cinemaSmall, 1440, 598],
+  p3: [cineverseSmall, 1440, 1000],
   p5: [organizatorSmall, 994, 967],
   p4: [calendarSmall, 1440, 769],
   p1: [weatherSmall, 1440, 736],

@@ -64,8 +64,8 @@
         "desc": "Management system for tables, orders, and menus for restaurants."
       },
       "p3": {
-        "title": "Cinema Management",
-        "desc": "Cinema management platform for halls, movies, and ticket reservations."
+        "title": "Cineverse",
+        "desc": "React and TypeScript redesign of a cinema booking site and its private admin panel."
       },
       "p4": {
         "title": "Reminder Calendar",

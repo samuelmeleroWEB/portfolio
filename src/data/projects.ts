@@ -2,7 +2,7 @@ import { Project } from '../types';
 
 import weatherImg from '../assets/images/projects/weather.webp';
 import restaurantImg from '../assets/images/projects/restaurant.webp';
-import cinemaImg from '../assets/images/projects/cinema.webp';
+import cinemaImg from '../assets/images/projects/cineverse-inicio.webp';
 import calendarImg from '../assets/images/projects/calendar.webp';
 import organizatorImg from '../assets/images/projects/organizatorimg.webp';
 import portfolioImg from '../assets/images/projects/imgporfolio.webp';
@@ -33,8 +33,8 @@ export const projects: Project[] = [
     {
         id: 'p3',
         number: '03',
-        title: 'Gestión de Cine',
-        description: 'Plataforma de administración de salas, películas y reservas de entradas.',
+        title: 'Cineverse',
+        description: 'Rediseño en React y TypeScript de la web de reservas de cine y su panel privado de administración.',
         stack: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
         demoUrl: 'https://frontend-cineverse.vercel.app/',
         githubUrl: 'https://github.com/samuelmeleroWEB/Cineverse',

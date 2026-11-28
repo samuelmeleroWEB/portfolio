@@ -4,13 +4,11 @@ import { FiArrowUpRight, FiCopy, FiDownload, FiGithub, FiLinkedin, FiPlus } from
 import { siteConfig } from '../../data/config';
 import { certifications } from '../../data/certifications';
 import { aiLevels, aiSkills, groups, levels, milestones, profile, relations, technologies, technologyName, workspaceProjects } from '../../data/workspace';
-import type { Translate, WorkspaceProject } from '../../data/workspace';
+import type { ProjectScreenshot, Translate, WorkspaceProject } from '../../data/workspace';
 import { labDemos } from '../../data/lab';
 import portrait from '../../assets/images/projects/imgprofile.webp';
 import calendarGallery from '../../assets/images/projects/calendar-gallery.webp';
 import calendarGallerySmall from '../../assets/images/projects/calendar-gallery-640.webp';
-import cinemaGallery from '../../assets/images/projects/cinema-gallery.webp';
-import cinemaGallerySmall from '../../assets/images/projects/cinema-gallery-640.webp';
 import portfolioGallery from '../../assets/images/projects/imgporfolio-gallery.webp';
 import portfolioGallerySmall from '../../assets/images/projects/imgporfolio-gallery-640.webp';
 import organizatorGallery from '../../assets/images/projects/organizatorimg-gallery.webp';
@@ -83,7 +81,6 @@ export function Hero({ tr }: { tr: Translate }) {
 }
 
 const galleryImages: Record<string, readonly [string, string]> = {
-  p3: [cinemaGallery, cinemaGallerySmall],
   p5: [organizatorGallery, organizatorGallerySmall],
   p4: [calendarGallery, calendarGallerySmall],
   p1: [weatherGallery, weatherGallerySmall],
@@ -98,16 +95,22 @@ const galleryAlternates: Record<string, readonly [string, string]> = {
 };
 
 function projectSlides(project: WorkspaceProject, tr: Translate): [GallerySlide, ...GallerySlide[]] {
+  const localize = ({ images, thumbnails, width, height, caption, video }: ProjectScreenshot): GallerySlide => {
+    const src = tr(...images);
+    return {
+      src, width, height, video, alt: tr(...caption),
+      srcSet: thumbnails && `${tr(...thumbnails)} 640w, ${src} ${width}w`,
+    };
+  };
+
+  if (project.gallery) {
+    const [cover, ...screenshots] = project.gallery;
+    return [localize(cover), ...screenshots.map(localize)];
+  }
+
   const featured = project.featured;
   if (featured) {
     const { cover, screenshots, galleryLead = cover } = featured;
-    const localize = ({ images, thumbnails, width, height, caption, video }: typeof cover): GallerySlide => {
-      const src = tr(...images);
-      return {
-        src, width, height, video, alt: tr(...caption),
-        srcSet: thumbnails && `${tr(...thumbnails)} 640w, ${src} ${width}w`,
-      };
-    };
     return [localize(galleryLead), ...[cover, ...screenshots].filter((item) => item !== galleryLead).map(localize)];
   }
 

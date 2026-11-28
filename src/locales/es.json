@@ -64,8 +64,8 @@
         "desc": "Sistema de gestión de mesas, pedidos y carta para restaurantes."
       },
       "p3": {
-        "title": "Gestión de Cine",
-        "desc": "Plataforma de administración de salas, películas y reservas de entradas."
+        "title": "Cineverse",
+        "desc": "Rediseño en React y TypeScript de la web de reservas de cine y su panel privado de administración."
       },
       "p4": {
         "title": "Reminder Calendar",
